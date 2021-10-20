@@ -1,0 +1,27 @@
+# Here you can select the messages of theRankShop
+
+# ger_DE by @supercrafter333
+
+
+
+# Messages
+msg-rankbuyevent-cancelled: "§4RankBuyEvent ist blockiert!"
+
+msg-rankbuy-noMoney: "§cDU hast nicht genügend Geld, um dir den ausgewählten Rang zu kaufen! (Du benötigst noch {missing} Geld für diesen Rang)"
+
+msg-rankbuy-successfully: "§aDu hast dir erfolgreich den §r{rank}§a Rang gekauft."
+
+msg-rankbuy-alreadyOwned: "§eDu besitzt bereits diesen Rang."
+
+
+# Forms
+forms-closeForm: "Du hast erfolgreich das Menü geschlossen."
+
+forms-menu-title: "§bRang§7Shop"
+forms-menu-content: "§rBitte wähle einen Rang aus."
+
+forms-buyRank-title: "§bRang§7Shop"
+forms-buyRank-content: "§eRang-Beschreibung:{line}§r{description}"
+forms-buyRank-submit: "§aKaufen"
+forms-buyRank-cancel: "§cAbbrechen"
+forms-buyRank-cancel-msg: "§cAbgebrochen!"

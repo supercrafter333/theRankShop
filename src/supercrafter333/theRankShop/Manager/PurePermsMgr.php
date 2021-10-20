@@ -6,6 +6,7 @@ use _64FF00\PurePerms\PPGroup;
 use _64FF00\PurePerms\PurePerms;
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
+use pocketmine\Server;
 use supercrafter333\theRankShop\theRankShop;
 
 /**
@@ -29,7 +30,7 @@ class PurePermsMgr implements RankManagementPlugin
      */
     public function __construct()
     {
-        $this->pureperms = PurePerms::getInstance();
+        $this->pureperms = Server::getInstance()->getPluginManager()->getPlugin("PurePerms");
         $this->ppUserMgr = $this->pureperms->getUserDataMgr();
     }
 

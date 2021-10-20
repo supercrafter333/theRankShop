@@ -29,7 +29,6 @@ class RankMgr
      */
     public static function getRankInfo(string $rankName): ?RankInfo
     {
-        print_r($rankName);
         if (!theRankShop::getRankCfg()->exists($rankName)) return null;
         return new RankInfo($rankName);
     }

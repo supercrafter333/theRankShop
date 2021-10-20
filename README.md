@@ -25,11 +25,11 @@ You've found a Bug?
 |-----------|---------------|--------------|
 |`/rankshop`|Open/Manage the rank shop.|`theRankShop.cmd`|
 
-### License:
-This Plugin has the [Apache License 2.0](/LICENSE)! Plugin by supercrafter333!
-
 ### Wiki
 Take a look at the [wiki of theRankShop](https://github.com/supercrafter333/theRankShop/wiki) if you need help or if you will read more over the Developer API.
+
+### License:
+This Plugin has the [Apache License 2.0](/LICENSE)! Plugin by supercrafter333!
 
 ### Credits
 

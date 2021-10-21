@@ -18,17 +18,9 @@ class PlayerMgr
 {
 
     /**
-     * @var Player
-     */
-    private Player $player;
-
-    /**
      * @param Player $player
      */
-    public function __construct(Player $player)
-    {
-        $this->player = $player;
-    }
+    public function __construct(private Player $player) {}
 
     /**
      * @return Player

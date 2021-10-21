@@ -12,17 +12,9 @@ class CommandMgr
 {
 
     /**
-     * @var string
-     */
-    private string $commandName;
-
-    /**
      * @param string $commandName
      */
-    public function __construct(string $commandName)
-    {
-        $this->commandName = $commandName;
-    }
+    public function __construct(private string $commandName) {}
 
     /**
      * @return string

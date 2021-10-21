@@ -12,24 +12,10 @@ class RankBuyedEvent extends Event
 {
 
     /**
-     * @var Player
-     */
-    private Player $player;
-
-    /**
-     * @var mixed
-     */
-    private mixed $rank;
-
-    /**
      * @param Player $player
      * @param mixed $rank
      */
-    public function __construct(Player $player, mixed $rank)
-    {
-        $this->player = $player;
-        $this->rank = $rank;
-    }
+    public function __construct(private Player $player, private mixed $rank) {}
 
     /**
      * @return Player

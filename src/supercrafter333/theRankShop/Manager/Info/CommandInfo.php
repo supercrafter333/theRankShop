@@ -9,11 +9,6 @@ class CommandInfo
 {
 
     /**
-     * @var string
-     */
-    private string $cmdName;
-
-    /**
      * @var Config
      */
     private Config $list;
@@ -21,9 +16,8 @@ class CommandInfo
     /**
      * @param string $cmdName
      */
-    public function __construct(string $cmdName)
+    public function __construct(private string $cmdName)
     {
-        $this->cmdName = $cmdName;
         $this->list = theRankShop::getCommandCfg();
     }
 

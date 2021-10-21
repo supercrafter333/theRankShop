@@ -12,11 +12,6 @@ class RankInfo
 {
 
     /**
-     * @var string
-     */
-    private string $rankName;
-
-    /**
      * @var Config
      */
     private Config $list;
@@ -24,9 +19,8 @@ class RankInfo
     /**
      * @param string $rankName
      */
-    public function __construct(string $rankName)
+    public function __construct(private string $rankName)
     {
-        $this->rankName = $rankName;
         $this->list = theRankShop::getRankCfg();
     }
 

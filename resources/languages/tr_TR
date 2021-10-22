@@ -1,0 +1,27 @@
+# Here you can select the messages of theRankShop
+
+# tr_TR by @xAliTura01 22.10.2021
+
+
+
+# Messages
+msg-rankbuyevent-cancelled: "§4RankBuyEvent iptal edildi!"
+
+msg-rankbuy-noMoney: "§cSeçilen rütbe için yeterli paranız yok! (Eksik para: {missing})"
+
+msg-rankbuy-successfully: "§r{rank}§a rütbesini başarıyla satın aldın."
+
+msg-rankbuy-alreadyOwned: "§eBu rütbeye zaten sahipsiniz."
+
+
+# Forms
+forms-closeForm: "Menüyü başarıyla kapattınız."
+
+forms-menu-title: "§bRütbe§7Market"
+forms-menu-content: "§rLütfen bir rütbe seçin."
+
+forms-buyRank-title: "§bRütbe§7Market"
+forms-buyRank-content: "§eRank-Description:{line}§r{description}"
+forms-buyRank-submit: "§aSatın al"
+forms-buyRank-cancel: "§cİptal et"
+forms-buyRank-cancel-msg: "§cİptal edildi!"

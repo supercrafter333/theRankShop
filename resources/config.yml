@@ -4,6 +4,7 @@
 
 # Language(s)
 # en_GB -> British English
+# tr_TR -> Turkey (normal)
 # ger_DE -> German | Deutsch (normal)
 # custom -> Edit the message yourself
 language: "en_GB"

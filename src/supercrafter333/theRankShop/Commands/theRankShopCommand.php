@@ -23,7 +23,7 @@ class theRankShopCommand extends Command implements PluginIdentifiableCommand
      * @param string $usageMessage
      * @param array|string[] $aliases
      */
-    public function __construct(string $name, string $description = null, string $usageMessage = null, array $aliases= [])
+    public function __construct(string $name, string $description = "", string $usageMessage = null, array $aliases= [])
     {
         parent::__construct($name, $description, $usageMessage, $aliases);
     }

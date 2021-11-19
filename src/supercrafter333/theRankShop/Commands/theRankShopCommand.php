@@ -23,14 +23,8 @@ class theRankShopCommand extends Command implements PluginIdentifiableCommand
      * @param string $usageMessage
      * @param array|string[] $aliases
      */
-    public function __construct(string $name = "therankshop", string $description = "Manage/Open the rank shop.", string $usageMessage = "§4Usage:§r /rankshop <subcommand>", array $aliases = ["rankshop", "rs"])
+    public function __construct(string $name, string $description = null, string $usageMessage = null, array $aliases= [])
     {
-        $cmdInfo = CommandMgr::getCommandInfo($name);
-
-        $description = $cmdInfo->getDescription() == null ? $description : $cmdInfo->getDescription();
-        $usageMessage = $cmdInfo->getUsage() !== null ? $cmdInfo->getUsage() : $usageMessage;
-        $aliases = !is_array($cmdInfo->getAliases()) ? $cmdInfo->getAliases() : $aliases;
-
         parent::__construct($name, $description, $usageMessage, $aliases);
     }
 

@@ -2,7 +2,7 @@
 
 namespace supercrafter333\theRankShop\Manager;
 
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
 
 interface RankManagementPlugin

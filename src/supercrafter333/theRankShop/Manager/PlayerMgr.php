@@ -3,7 +3,7 @@
 namespace supercrafter333\theRankShop\Manager;
 
 use onebone\economyapi\EconomyAPI;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\utils\AssumptionFailedError;
 use supercrafter333\theRankShop\Events\RankBuyedEvent;
 use supercrafter333\theRankShop\Events\RankBuyEvent;

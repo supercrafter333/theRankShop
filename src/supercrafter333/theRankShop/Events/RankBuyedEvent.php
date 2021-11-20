@@ -2,14 +2,16 @@
 
 namespace supercrafter333\theRankShop\Events;
 
+use pocketmine\event\CancellableTrait;
 use pocketmine\event\Event;
-use pocketmine\Player;
+use pocketmine\player\Player;
 
 /**
  *
  */
 class RankBuyedEvent extends Event
 {
+    use CancellableTrait;
 
     /**
      * @param Player $player

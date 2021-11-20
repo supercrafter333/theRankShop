@@ -4,8 +4,7 @@ namespace supercrafter333\theRankShop\Commands;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\command\PluginIdentifiableCommand;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
 use supercrafter333\theRankShop\Forms\theRankShopDefaultForms;
 use supercrafter333\theRankShop\Manager\CommandMgr;
@@ -14,7 +13,7 @@ use supercrafter333\theRankShop\theRankShop;
 /**
  *
  */
-class theRankShopCommand extends Command implements PluginIdentifiableCommand
+class theRankShopCommand extends Command
 {
 
     /**
@@ -23,7 +22,7 @@ class theRankShopCommand extends Command implements PluginIdentifiableCommand
      * @param string $usageMessage
      * @param array|string[] $aliases
      */
-    public function __construct(string $name = "therankshop", string $description = "Manage/Open the rank shop.", string $usageMessage = "§4Usage:§r /rankshop <subcommand>", array $aliases = ["rankshop", "rs"])
+    public function __construct(string $name, string $description = "", string $usageMessage = null, array $aliases = [])
     {
         $cmdInfo = CommandMgr::getCommandInfo($name);
 

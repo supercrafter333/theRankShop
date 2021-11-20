@@ -4,9 +4,9 @@ namespace supercrafter333\theRankShop\Forms;
 
 use jojoe77777\FormAPI\SimpleForm;
 use onebone\economyapi\EconomyAPI;
-use pocketmine\level\sound\AnvilFallSound;
-use pocketmine\level\sound\GhastShootSound;
-use pocketmine\Player;
+use pocketmine\world\sound\AnvilFallSound;
+use pocketmine\world\sound\GhastShootSound;
+use pocketmine\player\Player;
 use pocketmine\utils\AssumptionFailedError;
 use supercrafter333\theRankShop\Lang\LanguageMgr;
 use supercrafter333\theRankShop\Lang\Messages;
@@ -105,11 +105,11 @@ class theRankShopDefaultForms
                 $buyRank = $playerMgr->buyRank($rankInfo);
                 if ($buyRank) {
                     $player->sendMessage(str_replace(["{rank}", "{price}"], [$rankInfo->getRankName(), $rankInfo->getPrice()], LanguageMgr::getMsg(Messages::MSG_RANKBUY_SUCCESS)));
-                    $player->getLevel()->addSound(new GhastShootSound($player->asVector3()));
+                    $player->getWorld()->addSound($player->getPosition()->asVector3(), new GhastShootSound());
                     return;
                 } else {
                     $player->sendMessage(str_replace(["{rank}", "{price}", "{missing}"], [$rankInfo->getRankName(), $rankInfo->getPrice(), ($rankInfo->getPrice() - EconomyAPI::getInstance()->myMoney($player))], LanguageMgr::getMsg(Messages::MSG_RANKBUY_NOMONEY)));
-                    $player->getLevel()->addSound(new AnvilFallSound($player->asVector3()));
+                    $player->getWorld()->addSound($player->getPosition()->asVector3(), new AnvilFallSound());
                     return;
                 }
             }

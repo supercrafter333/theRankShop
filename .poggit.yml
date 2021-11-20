@@ -2,11 +2,11 @@
 build-by-default: true
 branches:
 - master
+- PM4
 projects:
   theRankShop:
     path: ""
     php: 8.0
     libs:
-      - src: jojoe77777/FormAPI/libFormAPI
-        version: ^1.3
+      - src: https://poggit.pmmp.io/ci/CLADevs/FormAPI-4.0
 ...

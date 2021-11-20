@@ -1,8 +1,11 @@
 name: theRankShop
 version: 1.0.0
-api: 3.0.0
+api: 4.0.0
 main: supercrafter333\theRankShop\theRankShop
 author: supercrafter333
 description: A simple and user friendly RankShop plugin. Developed for PM3.
 
-# permissions will registered in the PluginBase class (theRankShop.php)
+permissions:
+  theRankShop.cmd:
+    description: Command permission
+    default: true

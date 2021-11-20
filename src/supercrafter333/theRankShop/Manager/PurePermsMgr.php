@@ -4,7 +4,7 @@ namespace supercrafter333\theRankShop\Manager;
 
 use _64FF00\PurePerms\PPGroup;
 use _64FF00\PurePerms\PurePerms;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use supercrafter333\theRankShop\theRankShop;
@@ -30,7 +30,7 @@ class PurePermsMgr implements RankManagementPlugin
      */
     public function __construct()
     {
-        $this->pureperms = Server::getInstance()->getPluginManager()->getPlugin("PurePerms");
+        $this->pureperms = PurePerms::getInstance();
         $this->ppUserMgr = $this->pureperms->getUserDataMgr();
     }
 
@@ -70,6 +70,6 @@ class PurePermsMgr implements RankManagementPlugin
      */
     public function getRealPlugin(): Plugin
     {
-        return theRankShop::getInstance()->getServer()->getPluginManager()->getPlugin("PurePerms");
+        return PurePerms::getInstance();
     }
 }

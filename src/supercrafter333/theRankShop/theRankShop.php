@@ -3,12 +3,11 @@
 namespace supercrafter333\theRankShop;
 
 use jojoe77777\FormAPI\Form;
-use pocketmine\permission\DefaultPermissions;
-use pocketmine\permission\Permission;
-use pocketmine\permission\PermissionManager;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use supercrafter333\theRankShop\Commands\theRankShopCommand;
+use supercrafter333\theRankShop\Manager\CommandMgr;
+
 //use SimpleLogger;
 
 /**
@@ -18,7 +17,7 @@ class theRankShop extends PluginBase
 {
 
     /**
-     * @var $this
+     * @var self
      */
     protected static self $instance;
 
@@ -38,12 +37,6 @@ class theRankShop extends PluginBase
         $this->saveResource("config.yml");
         $this->saveResource("commands.yml");
         $this->saveResource("ranks.yml");
-
-        /*---==== Register Permissions ====---*/
-        //theRankShop.cmd -> true
-        DefaultPermissions::registerPermission(new Permission("theRankShop.cmd", "Command permission", Permission::DEFAULT_TRUE));
-        /*---------====================-------*/
-
     }
 
     /**
@@ -51,7 +44,16 @@ class theRankShop extends PluginBase
      */
     public function onEnable(): void
     {
-        $this->getServer()->getCommandMap()->register("theRankShop", new theRankShopCommand());
+        $cmdInfo = CommandMgr::getCommandInfo("therankshop");
+
+        $description = "Manage/Open the rank shop.";
+        $usageMessage = "§4Usage:§r /rankshop <subcommand>";
+        $aliases = ["rankshop", "rs"];
+
+        $description = $cmdInfo->getDescription() == null ? $description : $cmdInfo->getDescription();
+        $usageMessage = $cmdInfo->getUsage() !== null ? $cmdInfo->getUsage() : $usageMessage;
+        $aliases = !is_array($cmdInfo->getAliases()) ? $cmdInfo->getAliases() : $aliases;
+        $this->getServer()->getCommandMap()->register("theRankShop", new theRankShopCommand("therankshop", $description, $usageMessage, $aliases));
     }
 
     /**

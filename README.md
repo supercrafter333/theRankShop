@@ -1,4 +1,4 @@
-# This version is End-Of-Life (please use the [PM4-Version](https://github.com/supercrafter333/BetterBan))
+# This version is End-Of-Life (please use the [PM4-Version](https://github.com/supercrafter333/theRankShop))
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ca6cWPpERp)
 # theRankShop - V1.0.0   [![](https://poggit.pmmp.io/shield.state/theRankShop)](https://poggit.pmmp.io/p/theRankShop) [![](https://poggit.pmmp.io/shield.dl.total/theRankShop)](https://poggit.pmmp.io/p/theRankShop)
 

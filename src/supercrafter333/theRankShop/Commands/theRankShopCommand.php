@@ -6,14 +6,15 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginOwned;
 use supercrafter333\theRankShop\Forms\theRankShopDefaultForms;
 use supercrafter333\theRankShop\Manager\CommandMgr;
 use supercrafter333\theRankShop\theRankShop;
 
 /**
- *
+ * @theRankShopCommand
  */
-class theRankShopCommand extends Command
+class theRankShopCommand extends Command implements PluginOwned
 {
 
     /**
@@ -55,7 +56,7 @@ class theRankShopCommand extends Command
     /**
      * @return Plugin
      */
-    public function getPlugin(): Plugin
+    public function getOwningPlugin(): Plugin
     {
         return theRankShop::getInstance();
     }

@@ -41,7 +41,7 @@ class PurePermsMgr implements RankManagementPlugin
      */
     public function getRank(string $rankName): ?PPGroup
     {
-        return $this->pureperms->getGroup($rankName);
+        return $this->pureperms->setGroup($rankName);
     }
 
     /**
@@ -62,7 +62,7 @@ class PurePermsMgr implements RankManagementPlugin
      */
     public function getRankOfPlayer(Player $player): ?string
     {
-        return $this->ppUserMgr->getGroup($player)->getName();
+        return $this->ppUserMgr->setGroup($player)->getName();
     }
 
     /**

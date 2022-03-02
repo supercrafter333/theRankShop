@@ -11,6 +11,16 @@
 - buyer-protection ([#7](https://github.com/supercrafter333/theRankShop/issues/7))
 - price calculating / rank upgrades ([#7](https://github.com/supercrafter333/theRankShop/issues/7))
 - extension support (developers can add their own rank plugin easily)
+
+### Supported plugins
+Newer plugins:
+
+- [BedrockEconomy](https://github.com/cooldogedev/BedrockEconomy)
+- [GroupsAPI](https://github.com/alvin0319/GroupsAPI)
+
+Older plugins:
+- [EconomyAPI](https://github.com/poggit-orphanage/EconomyS/tree/master/EconomyAPI) (no longer maintained)
+- [PurePerms](https://github.com/poggit-orphanage/PurePerms)
     
 ### TODOs
 If you've new ideas and features for this plugin, please open an issue :)

@@ -1,13 +1,16 @@
 # Here you can select the messages of theRankShop
 
-# ger_DE by @supercrafter333 | 20.10.2021
+# ger_DE by @supercrafter333 | 01.03.2022
+# for version: 1.0.0, 1.1.0 and higher
 
 
 
 # Messages
 msg-rankbuyevent-cancelled: "§4RankBuyEvent ist blockiert!"
 
-msg-rankbuy-noMoney: "§cDU hast nicht genügend Geld, um dir den ausgewählten Rang zu kaufen! (Du benötigst noch {missing} Geld für diesen Rang)"
+msg-rankbuy-noMoney: "§cDu hast nicht genügend Geld, um dir den ausgewählten Rang zu kaufen! (Du benötigst noch {missing} Geld für diesen Rang)"
+
+msg-rankbuy-higherRank: "§cDu hast bereits einen höheren Rang als §r{rank}§c!"
 
 msg-rankbuy-successfully: "§aDu hast dir erfolgreich den §r{rank}§a Rang gekauft."
 

@@ -32,4 +32,19 @@ class RankMgr
         if (!theRankShop::getRankCfg()->exists($rankName)) return null;
         return new RankInfo($rankName);
     }
+
+    public static function calculateRankPrices(string $newRankName, string $oldRankName): int|float|null|false
+    {
+        $new = self::getRankInfo($newRankName);
+        $old = self::getRankInfo($oldRankName);
+
+        if ($new === null || $old === null) return false;
+
+        $newPrice = $new->getPrice();
+        $oldPrice = $old->getPrice();
+
+        if ($newPrice === $oldPrice) return null;
+
+        return ($newPrice - $oldPrice) < 0 ? null : $newPrice - $oldPrice;
+    }
 }

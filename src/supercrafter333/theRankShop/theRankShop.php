@@ -2,11 +2,19 @@
 
 namespace supercrafter333\theRankShop;
 
+use _64FF00\PurePerms\PurePerms;
+use cooldogedev\BedrockEconomy\BedrockEconomy;
+use DaPigGuy\libPiggyEconomy\libPiggyEconomy;
+use DaPigGuy\libPiggyEconomy\providers\EconomyProvider;
 use jojoe77777\FormAPI\Form;
+use onebone\economyapi\EconomyAPI;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use supercrafter333\theRankShop\Commands\theRankShopCommand;
+use supercrafter333\theRankShop\Lang\Languages;
 use supercrafter333\theRankShop\Manager\CommandMgr;
+use supercrafter333\theRankShop\Manager\PurePermsMgr;
+use supercrafter333\theRankShop\Manager\RankManagementPluginMgr;
 
 //use SimpleLogger;
 
@@ -21,14 +29,22 @@ class theRankShop extends PluginBase
      */
     protected static self $instance;
 
+    protected static EconomyProvider $economyProvider;
+
     /**
      * onLoad function.
      */
     public function onLoad(): void
     {
         self::$instance = $this;
+
         if (!class_exists(Form::class)) { //FormAPI cannot found
-            $this->getServer()->getLogger()->error("CANNOT FIND FormAPI LIBRARY!! theRankShop will be unloaded now.");
+            $this->getServer()->getLogger()->error("CANNOT FIND FormAPI LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
+
+        if (!class_exists(libPiggyEconomy::class)) { //libPiggyEconomy cannot found
+            $this->getServer()->getLogger()->error("CANNOT FIND libPiggyEconomy LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
             $this->getServer()->getPluginManager()->disablePlugin($this);
         }
 
@@ -37,6 +53,10 @@ class theRankShop extends PluginBase
         $this->saveResource("config.yml");
         $this->saveResource("commands.yml");
         $this->saveResource("ranks.yml");
+
+        ##################################
+        $this->updateConfigs(true);
+        ##################################
     }
 
     /**
@@ -44,6 +64,26 @@ class theRankShop extends PluginBase
      */
     public function onEnable(): void
     {
+        libPiggyEconomy::init();
+        if (mb_strtolower($this->getConfig()->get("economy-plugin")) == "economyapi") {
+            self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "economyapi"]);
+        } elseif (mb_strtolower($this->getConfig()->get("economy-plugin")) == "bedrockeconomy") {
+            self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "bedrockeconomy"]);
+        } elseif (class_exists(EconomyAPI::class)) {
+            self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "economyapi"]);
+        } elseif (class_exists(BedrockEconomy::class)) {
+            self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "bedrockeconomy"]);
+        } else {
+            $this->getLogger()->error("Can't find any supported economy plugin. Disabling theRankShop...");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
+
+        if (mb_strtolower($this->getConfig()->get("rank-management-plugin")) == "pureperms") {
+            RankManagementPluginMgr::setRankManagementClass(new PurePermsMgr());
+        } elseif (class_exists(PurePerms::class)) {
+            RankManagementPluginMgr::setRankManagementClass(new PurePermsMgr());
+        } # GroupsAPI is default
+
         $cmdInfo = CommandMgr::getCommandInfo("therankshop");
 
         $description = "Manage/Open the rank shop.";
@@ -62,6 +102,11 @@ class theRankShop extends PluginBase
     public static function getInstance(): self
     {
         return self::$instance;
+    }
+
+    public static function getEconomyProvider(): EconomyProvider
+    {
+        return self::$economyProvider;
     }
 
     /**
@@ -86,5 +131,46 @@ class theRankShop extends PluginBase
     public static function getRankCfg(): Config
     {
         return new Config(self::getInstance()->getDataFolder() . "ranks.yml", Config::YAML);
+    }
+
+    private function updateConfigs(bool $update): void
+    {
+        $logger = $this->getLogger();
+        $defaultPath = $this->getDataFolder();
+        $langPath = $defaultPath . "languages/";
+        $version = $this->getDescription()->getVersion();
+
+        $updateCustomLang = function (string|null $oldVersion = null) use ($langPath, $version, $logger): void {
+            $logger->warning("Updating '" . Languages::LANG_CUSTOM . ".yml' for theRankShop version " . $version . " ...");
+            $verString = $oldVersion !== null ? $oldVersion . "_" : "outdated_";
+
+            if (rename($langPath . Languages::LANG_CUSTOM . ".yml", $langPath . $verString . Languages::LANG_CUSTOM . ".yml")) {
+                $logger->warning("Successfully updated '" . Languages::LANG_CUSTOM . ".yml'! Old file can be found in: " . $langPath . $verString . Languages::LANG_CUSTOM . ".yml");
+            } else {
+                $logger->error("Cannot update language data! (rename failed)");
+            }
+        };
+
+        $updateConfig = function (string|null $oldVersion = null) use ($defaultPath, $version, $logger): void {
+            $logger->warning("Updating 'config.yml' for theRankShop version " . $version . " ...");
+            $verString = $oldVersion !== null ? $oldVersion . "_" : "outdated_";
+
+            if (rename($defaultPath . "config.yml", $defaultPath . $verString . "config.yml")) {
+                $logger->warning("Successfully updated 'config.yml'! Old file can be found in: " . $defaultPath . $verString . "config.yml");
+            } else {
+                $logger->error("Cannot update language data! (rename failed)");
+            }
+        };
+
+        if (Languages::getLanguage() == Languages::LANG_CUSTOM
+        && (($lVer = Languages::getLanguageData()->get("version", null)) !== $version)) {
+            $logger->notice("Your language file is outdated!");
+            if ($update) $updateCustomLang($lVer);
+        }
+
+        if (($cVer = $this->getConfig()->get("version", null)) !== $version) {
+            $logger->notice("Your configuration (config.yml) file is outdated!");
+            if ($update) $updateConfig($cVer);
+        }
     }
 }

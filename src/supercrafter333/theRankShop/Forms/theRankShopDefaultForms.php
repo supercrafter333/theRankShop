@@ -3,7 +3,6 @@
 namespace supercrafter333\theRankShop\Forms;
 
 use jojoe77777\FormAPI\SimpleForm;
-use onebone\economyapi\EconomyAPI;
 use pocketmine\world\sound\AnvilFallSound;
 use pocketmine\world\sound\GhastShootSound;
 use pocketmine\player\Player;
@@ -14,6 +13,7 @@ use supercrafter333\theRankShop\Manager\Info\RankInfo;
 use supercrafter333\theRankShop\Manager\PlayerMgr;
 use supercrafter333\theRankShop\Manager\RankManagementPluginMgr;
 use supercrafter333\theRankShop\Manager\RankMgr;
+use supercrafter333\theRankShop\theRankShop;
 
 /**
  * Forms of theRankShop.
@@ -69,6 +69,11 @@ class theRankShopDefaultForms
         $form->setContent(LanguageMgr::getMsg(Messages::FORMS_MENU_CONT));
         foreach (RankMgr::getAllRanksInConfig() as $rank) {
             $rankInfo = RankMgr::getRankInfo($rank);
+            /*$price = $rankInfo->getPrice();
+            $playerRank = RankManagementPluginMgr::getRankPlugin()->getRankOfPlayer($player);
+            if ($playerRank !== null) {
+                if (($newPrice = RankMgr::calculateRankPrices($rank, $playerRank)) !== null) $price = $newPrice;
+            }*/
             $uiTitle = str_replace(["{rank}", "{price}", "{line}"], [$rankInfo->getRankName(), $rankInfo->getPrice(), "\n"], $rankInfo->getUiTitle());
             $form->addButton($uiTitle, -1, "", $rank);
         }
@@ -102,16 +107,40 @@ class theRankShopDefaultForms
                     $player->sendMessage(LanguageMgr::getMsg(str_replace("{rank}", $rankName, Messages::MSG_RANKBUY_ALREADY_OWN)));
                     return;
                 }
-                $buyRank = $playerMgr->buyRank($rankInfo);
-                if ($buyRank) {
-                    $player->sendMessage(str_replace(["{rank}", "{price}"], [$rankInfo->getRankName(), $rankInfo->getPrice()], LanguageMgr::getMsg(Messages::MSG_RANKBUY_SUCCESS)));
-                    $player->getWorld()->addSound($player->getPosition()->asVector3(), new GhastShootSound());
-                    return;
-                } else {
-                    $player->sendMessage(str_replace(["{rank}", "{price}", "{missing}"], [$rankInfo->getRankName(), $rankInfo->getPrice(), ($rankInfo->getPrice() - EconomyAPI::getInstance()->myMoney($player))], LanguageMgr::getMsg(Messages::MSG_RANKBUY_NOMONEY)));
-                    $player->getWorld()->addSound($player->getPosition()->asVector3(), new AnvilFallSound());
-                    return;
-                }
+
+                theRankShop::getEconomyProvider()->getMoney($this->player,
+                    function (float|int $amount) use ($player, $playerMgr, $rank, $rankInfo, $rankName): void {
+
+                        $name = $rankInfo->getRankName();
+                        ##########################################################################
+                        $price = $rankInfo->getPrice();
+
+                        $playerRank = RankManagementPluginMgr::getRankPlugin()->getRankOfPlayer($this->player);
+                        if ($playerRank !== null) {
+                            if (($newPrice = RankMgr::calculateRankPrices($name, $playerRank)) !== false && $newPrice !== null) $price = $newPrice;
+                        }
+
+                        if ($price > $amount) {
+                            $player->sendMessage(str_replace(["{rank}", "{price}", "{missing}"], [$rankInfo->getRankName(), $rankInfo->getPrice(), ($rankInfo->getPrice() - $amount)], LanguageMgr::getMsg(Messages::MSG_RANKBUY_NOMONEY)));
+                            $player->getWorld()->addSound($player->getPosition()->asVector3(), new AnvilFallSound());
+                            return;
+                        }
+                        ##########################################################################
+
+                        $buyRank = $playerMgr->buyRank($rankInfo);
+                        if ($buyRank == 0) return;
+
+                        switch ($buyRank) {
+                            case 1:
+                                $player->sendMessage(str_replace(["{rank}", "{price}"], [$rankInfo->getRankName(), $rankInfo->getPrice()], LanguageMgr::getMsg(Messages::MSG_RANKBUY_SUCCESS)));
+                                $player->getWorld()->addSound($player->getPosition()->asVector3(), new GhastShootSound());
+                                return;
+                            case 2:
+                                $player->sendMessage(str_replace(["{rank}"], [$rankInfo->getRankName()], LanguageMgr::getMsg(Messages::MSG_RANKBUY_HIGHER_RANK)));
+                                $player->getWorld()->addSound($player->getPosition()->asVector3(), new AnvilFallSound());
+                                return;
+                        }
+                    });
             }
         });
         $form->setTitle(LanguageMgr::getMsgWithNoExtras(Messages::FORMS_BUYRANK_TITLE));

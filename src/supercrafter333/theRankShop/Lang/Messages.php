@@ -9,6 +9,8 @@ class Messages
 
     public const MSG_RANKBUY_NOMONEY = "msg-rankbuy-noMoney";
 
+    public const MSG_RANKBUY_HIGHER_RANK = "msg-rankbuy-higherRank";
+
     public const MSG_RANKBUY_SUCCESS = "msg-rankbuy-successfully";
 
     public const MSG_RANKBUY_ALREADY_OWN = "msg-rankbuy-alreadyOwned";

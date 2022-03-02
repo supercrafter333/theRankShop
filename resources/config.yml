@@ -8,3 +8,21 @@
 # ger_DE -> German | Deutsch (normal)
 # custom -> Edit the message yourself
 language: "en_GB"
+
+# Economy plugin
+# "bedrockeconomy" => BedrockEconomy
+# "economyapi" => EconomyAPI
+# "auto" => automatical detection [DEFAULT]
+economy-plugin: "auto"
+
+# Rank-Management plugin
+# "groupsapi" => GroupsAPI
+# "pureperms" => PurePerms
+# "auto" => automatical detection  [DEFAULT]
+rank-management-plugin: "auto"
+
+
+
+
+# DON'T CHANGE THIS!!
+version: "1.1.0-dev"

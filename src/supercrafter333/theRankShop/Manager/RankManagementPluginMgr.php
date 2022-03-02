@@ -3,6 +3,7 @@
 namespace supercrafter333\theRankShop\Manager;
 
 use _64FF00\PurePerms\PurePerms;
+use alvin0319\GroupsAPI\GroupsAPI;
 use pocketmine\utils\AssumptionFailedError;
 use supercrafter333\theRankShop\theRankShop;
 
@@ -38,11 +39,11 @@ class RankManagementPluginMgr
     public static function getRankPlugin(): RankManagementPlugin
     {
         if (self::$pluginClass == null) {
-            $pp = theRankShop::getInstance()->getServer()->getPluginManager()->getPlugin("PurePerms");
-            if (!$pp instanceof PurePerms) {
-                return throw new AssumptionFailedError("[theRankShop] -> Can't find default rank-management plugin (PurePerms)!");
+            $gApi = theRankShop::getInstance()->getServer()->getPluginManager()->getPlugin("GroupsAPI");
+            if (!$gApi instanceof GroupsAPI) {
+                return throw new AssumptionFailedError("[theRankShop] -> Can't find default rank-management plugin (GroupsAPI)!");
             }
-            return new PurePermsMgr();
+            return new GroupsAPIMgr();
         }
         return self::$pluginClass;
     }

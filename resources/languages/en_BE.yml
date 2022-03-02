@@ -1,15 +1,18 @@
 # Here you can select the messages of theRankShop
 
-# en_GB by @supercrafter333 | 20.10.2021
+# en_GB by @supercrafter333 | 01.03.2022
+# for version: 1.0.0, 1.1.0 and higher
 
 
 
 # Messages
 msg-rankbuyevent-cancelled: "§4RankBuyEvent was cancelled!"
 
-msg-rankbuy-noMoney: "§cYou don't have enought money for the selected rank! (Missing money: {missing})"
+msg-rankbuy-noMoney: "§cYou don't have enough money for the selected rank! (Missing money: {missing})"
 
-msg-rankbuy-successfully: "§aSuccessfully buyed the §r{rank}§a rank."
+msg-rankbuy-higherRank: "§cYou're already having a higher rank than §r{rank}§c!"
+
+msg-rankbuy-successfully: "§aSuccessfully bought the §r{rank}§a rank."
 
 msg-rankbuy-alreadyOwned: "§eYou already own this rank."
 

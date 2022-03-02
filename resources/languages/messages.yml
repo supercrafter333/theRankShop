@@ -5,9 +5,11 @@
 # Messages
 msg-rankbuyevent-cancelled: "§4RankBuyEvent was cancelled!"
 
-msg-rankbuy-noMoney: "§cYou don't have enought money for the selected rank! (Missing money: {missing})"
+msg-rankbuy-noMoney: "§cYou don't have enough money for the selected rank! (Missing money: {missing})"
 
-msg-rankbuy-successfully: "§aSuccessfully buyed the §r{rank}§a rank."
+msg-rankbuy-higherRank: "§cYou're already having a higher rank than §r{rank}§c!"
+
+msg-rankbuy-successfully: "§aSuccessfully bought the §r{rank}§a rank."
 
 msg-rankbuy-alreadyOwned: "§eYou already own this rank."
 
@@ -23,3 +25,8 @@ forms-buyRank-content: "§eRank-Description:{line}§r{description}"
 forms-buyRank-submit: "§aBuy"
 forms-buyRank-cancel: "§cCancel"
 forms-buyRank-cancel-msg: "§cCancelled!"
+
+
+
+# DON'T CHANGE THIS!!
+version: "1.1.0-dev"

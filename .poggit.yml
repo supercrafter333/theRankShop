@@ -5,6 +5,7 @@ branches:
 - development
 projects:
   theRankShop:
+    icon: "icon.png"
     path: ""
     php: 8.0
     libs:

@@ -50,6 +50,9 @@ Owner: supercrafter333
 
 Helper: ---
 
-Icon: ---
+Translator:
+- [xAliTura01](https://github.com/xAliTura01) (Turkish)
+
+Icon: [iconarchive.com](https://icons.iconarchive.com/icons/thehoth/seo/256/seo-rank-up-icon.png)
 
 Discord-Tag: `supercrafter333#4062`

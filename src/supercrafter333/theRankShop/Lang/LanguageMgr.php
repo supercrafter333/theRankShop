@@ -17,16 +17,22 @@ class LanguageMgr
      * [auto-replace: {line} to \n]
      *
      * @param string $message
+     * @param array|null $replace
      * @return string
      */
-    public static function getMsg(string $message): string
+    public static function getMsg(string $message, array|null $replace = null): string
     {
         $lang = Languages::getLanguageData();
         if (!$lang->exists($message)) {
             if (!Languages::getDefaultLanguageData()->exists($message)) return "ERROR! Message not found!";
             return str_replace("{line}", "\n", Languages::getDefaultLanguageData()->get($message));
         }
-        return str_replace("{line}", "\n", $lang->get($message));
+        $message = $lang->get($message);
+        if ($replace !== null)
+            foreach (array_keys($replace) as $key) {
+                $message = str_replace($key, $replace[$key], $message);
+            }
+        return str_replace("{line}", "\n", $message);
     }
 
     /**

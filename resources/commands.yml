@@ -1,4 +1,4 @@
 therankshop:
   description: "Open/Manage the rank shop."
-  usage: "§4Usage:§r /rankshop <subcommand>"
+  usage: "§4Usage:§r /rankshop <subcommand: addrank|removerank>"
   aliases: ["rankshop", "rs"]

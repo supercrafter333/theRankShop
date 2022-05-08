@@ -1,5 +1,5 @@
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ca6cWPpERp)
-# theRankShop - V1.1.0   [![](https://poggit.pmmp.io/shield.state/theRankShop)](https://poggit.pmmp.io/p/theRankShop) [![](https://poggit.pmmp.io/shield.dl.total/theRankShop)](https://poggit.pmmp.io/p/theRankShop)
+# theRankShop - v1.2.0   [![](https://poggit.pmmp.io/shield.state/theRankShop)](https://poggit.pmmp.io/p/theRankShop) [![](https://poggit.pmmp.io/shield.dl.total/theRankShop)](https://poggit.pmmp.io/p/theRankShop)
 
 
 **A simple and user-friendly rank shop plugin with extension support and multi-language-system.**
@@ -11,6 +11,7 @@
 - buyer-protection ([#7](https://github.com/supercrafter333/theRankShop/issues/7))
 - price calculating / rank upgrades ([#7](https://github.com/supercrafter333/theRankShop/issues/7))
 - extension support (developers can add their own rank plugin easily)
+- easily add and remove ranks per command
 
 ### Supported plugins
 Newer plugins:
@@ -25,7 +26,7 @@ Older plugins:
 ### TODOs
 If you've new ideas and features for this plugin, please open an issue :)
 
-### Report Bug
+### Bugreport
 You've found a Bug?
 - Go to [Issues](https://github.com/supercrafter333/theRankShop/issues)
 - Click on [New Issue](https://github.com/supercrafter333/theRankShop/issues/new/choose)
@@ -34,9 +35,11 @@ You've found a Bug?
 - Wait, I where answer you
 
 ### Commands
-|**Command**|**Description**|**Permission**|
-|-----------|---------------|--------------|
-|`/rankshop`|Open/Manage the rank shop.|`theRankShop.cmd`|
+| **Command**                                                                                                  | **Description**                  | **Permission**               |
+|--------------------------------------------------------------------------------------------------------------|----------------------------------|------------------------------|
+| `/rankshop`                                                                                                  | Open the rank shop.              | `theRankShop.cmd`            |
+| <code>/rankshop <addrank> <rankname: string> <title: string> <description: string> <price: int/float></code> | Add a rank to the rankshop.      | `theRankShop.cmd.addrank`    |
+| <code>/rankshop <addrank> <rankname: string></code> | Remove a rank from the rankshop. | `theRankShop.cmd.removerank` |
 
 ### Wiki
 Read the [wiki of theRankShop](https://github.com/supercrafter333/theRankShop/wiki) if you need help or if you will read more over the Developer API.

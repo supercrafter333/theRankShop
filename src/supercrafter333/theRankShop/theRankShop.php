@@ -3,6 +3,7 @@
 namespace supercrafter333\theRankShop;
 
 use _64FF00\PurePerms\PurePerms;
+use arie\yamlcomments\YamlComments;
 use cooldogedev\BedrockEconomy\BedrockEconomy;
 use DaPigGuy\libPiggyEconomy\libPiggyEconomy;
 use DaPigGuy\libPiggyEconomy\providers\EconomyProvider;
@@ -15,8 +16,6 @@ use supercrafter333\theRankShop\Lang\Languages;
 use supercrafter333\theRankShop\Manager\CommandMgr;
 use supercrafter333\theRankShop\Manager\PurePermsMgr;
 use supercrafter333\theRankShop\Manager\RankManagementPluginMgr;
-
-//use SimpleLogger;
 
 /**
  * PluginBase of theRankShop.
@@ -45,6 +44,11 @@ class theRankShop extends PluginBase
 
         if (!class_exists(libPiggyEconomy::class)) { //libPiggyEconomy cannot found
             $this->getServer()->getLogger()->error("CANNOT FIND libPiggyEconomy LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
+
+        if (!class_exists(YamlComments::class)) { //YamlComments cannot found
+            $this->getServer()->getLogger()->error("CANNOT FIND YamlComments LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
             $this->getServer()->getPluginManager()->disablePlugin($this);
         }
 
@@ -86,7 +90,7 @@ class theRankShop extends PluginBase
 
         $cmdInfo = CommandMgr::getCommandInfo("therankshop");
 
-        $description = "Manage/Open the rank shop.";
+        $description = "Open/Manage the rank shop.";
         $usageMessage = "§4Usage:§r /rankshop <subcommand>";
         $aliases = ["rankshop", "rs"];
 
@@ -158,9 +162,20 @@ class theRankShop extends PluginBase
             if (rename($defaultPath . "config.yml", $defaultPath . $verString . "config.yml")) {
                 $logger->warning("Successfully updated 'config.yml'! Old file can be found in: " . $defaultPath . $verString . "config.yml");
             } else {
-                $logger->error("Cannot update language data! (rename failed)");
+                $logger->error("Cannot update config! (rename failed)");
             }
         };
+
+        /*$updateCmdConfig = function (string|null $oldVersion = null) use ($defaultPath, $version, $logger): void {
+            $logger->warning("Updating 'commands.yml' for theRankShop version " . $version . " ...");
+            $verString = $oldVersion !== null ? $oldVersion . "_" : "outdated_";
+
+            if (rename($defaultPath . "commands.yml", $defaultPath . $verString . "commands.yml")) {
+                $logger->warning("Successfully updated 'commands.yml'! Old file can be found in: " . $defaultPath . $verString . "commands.yml");
+            } else {
+                $logger->error("Cannot update command config! (rename failed)");
+            }
+        };*/
 
         if (Languages::getLanguage() == Languages::LANG_CUSTOM
         && (($lVer = Languages::getLanguageData()->get("version", null)) !== $version)) {

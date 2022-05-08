@@ -1,5 +1,5 @@
 name: theRankShop
-version: 1.1.0
+version: 1.2.0
 api: 4.0.0
 main: supercrafter333\theRankShop\theRankShop
 author: supercrafter333
@@ -15,3 +15,9 @@ permissions:
   theRankShop.cmd:
     description: Command permission
     default: true
+  theRankShop.cmd.addrank:
+    description: Command permission
+    default: op
+  theRankShop.cmd.removerank:
+    description: Command permission
+    default: op

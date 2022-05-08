@@ -13,6 +13,13 @@ msg-rankbuy-successfully: "§aSuccessfully bought the §r{rank}§a rank."
 
 msg-rankbuy-alreadyOwned: "§eYou already own this rank."
 
+# /therankshop command
+addrank-cmd-rank-not-found: "§cThe rank §7{rank}§c cannot be found!"
+addrank-cmd-rank-already-added: "§cThe rank §7{rank}§c was already added!"
+addrank-cmd-success: "§aSuccessfully addded rank §7{rank}§a:{line}§7Title: §b{title}{line}§7Description: §b{desc}{line}§7Price: §b{price}"
+
+removerank-cmd-rank-not-added: "§cThe rank §7{rank}§c ins't added!"
+removerank-cmd-success: "§aSuccessfully removed rank §7{rank}§a from the rankshop-list."
 
 # Forms
 forms-closeForm: "You've successfully closed the menu."
@@ -29,4 +36,4 @@ forms-buyRank-cancel-msg: "§cCancelled!"
 
 
 # DON'T CHANGE THIS!!
-version: "1.1.0"
+version: "1.2.0"

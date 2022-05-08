@@ -4,8 +4,11 @@
 
 ####################################
 ### Example: ###
-# rankName:
-#   uiTitle: "NeW RaNk{line}Price: {price}"
-#   desc: "Description of the Rank."
-#   price: 300
+#rankName:
+#  uiTitle: "NeW RaNk{line}Price: {price}"
+#  desc: "Description of the Rank."
+#  price: 300
 ####################################
+# You can also use '/therankshop addrank <rankname> <uiTitle> <description> <price>' to add a rank
+# And '/therankshop removerank <rankname>' to remove a rank
+###################################################

@@ -45,7 +45,7 @@ You've found a Bug?
 Read the [wiki of theRankShop](https://github.com/supercrafter333/theRankShop/wiki) if you need help or if you will read more over the Developer API.
 
 ### License:
-This Plugin has the [Apache License 2.0](/LICENSE)! Plugin by supercrafter333!
+This plugin is licensed under the [Apache License 2.0](/LICENSE)! Plugin by supercrafter333!
 
 ### Credits
 

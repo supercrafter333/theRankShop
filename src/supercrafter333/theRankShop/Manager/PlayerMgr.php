@@ -4,7 +4,7 @@ namespace supercrafter333\theRankShop\Manager;
 
 use pocketmine\player\Player;
 use pocketmine\utils\AssumptionFailedError;
-use supercrafter333\theRankShop\Events\RankBuyedEvent;
+use supercrafter333\theRankShop\Events\RankBoughtEvent;
 use supercrafter333\theRankShop\Events\RankBuyEvent;
 use supercrafter333\theRankShop\Lang\LanguageMgr;
 use supercrafter333\theRankShop\Lang\Messages;
@@ -88,7 +88,7 @@ class PlayerMgr
         theRankShop::getEconomyProvider()->takeMoney($this->player, $price);
         $setRank = $this->setRank($name);
         if (!$setRank) return throw new AssumptionFailedError("[theRankShop] -> Can't set rank ($name) for player (" . $this->player->getName() . ")!");
-        $ev = new RankBuyedEvent($this->player, $name);
+        $ev = new RankBoughtEvent($this->player, $name);
         $ev->call();
         return 1;
     }

@@ -1,5 +1,5 @@
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ca6cWPpERp)
-# theRankShop - v1.2.0   [![](https://poggit.pmmp.io/shield.state/theRankShop)](https://poggit.pmmp.io/p/theRankShop) [![](https://poggit.pmmp.io/shield.dl.total/theRankShop)](https://poggit.pmmp.io/p/theRankShop)
+# theRankShop - v1.2.1   [![](https://poggit.pmmp.io/shield.state/theRankShop)](https://poggit.pmmp.io/p/theRankShop) [![](https://poggit.pmmp.io/shield.dl.total/theRankShop)](https://poggit.pmmp.io/p/theRankShop)
 
 
 **A simple and user-friendly rank shop plugin with extension support and multi-language-system.**

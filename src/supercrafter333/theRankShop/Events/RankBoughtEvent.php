@@ -9,7 +9,7 @@ use pocketmine\player\Player;
 /**
  *
  */
-class RankBuyedEvent extends Event
+class RankBoughtEvent extends Event
 {
     use CancellableTrait;
 

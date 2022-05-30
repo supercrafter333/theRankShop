@@ -1,7 +1,7 @@
 # Here you can select the messages of theRankShop
 
 # ger_DE by @supercrafter333 | 01.03.2022
-# for version: 1.0.0, 1.2.0, 1.2.0 and higher
+# for version: 1.0.0, 1.2.0, 1.3.0-dev and higher
 
 
 
@@ -12,14 +12,14 @@ msg-rankbuy-noMoney: "§cDu hast nicht genügend Geld, um dir den ausgewählten 
 
 msg-rankbuy-higherRank: "§cDu hast bereits einen höheren Rang als §r{rank}§c!"
 
-msg-rankbuy-successfully: "§aDu hast dir erfolgreich den §r{rank}§a Rang gekauft."
+msg-rankbuy-successfully: "§aDu hast dir erfolgreich den §r{rank}§a Rang gekauft. Dieser Rang läuft ab am: §b{expireAt}"
 
 msg-rankbuy-alreadyOwned: "§eDu besitzt bereits diesen Rang."
 
 # /therankshop command
 addrank-cmd-rank-not-found: "§cDer Rang §7{rank}§c konnte nicht gefunden werden!"
 addrank-cmd-rank-already-added: "§cDer Rang §7{rank}§c ist bereits vorhanden!"
-addrank-cmd-success: "§aDer Rang §7{rank}§a wurde erfolgreich hinzugefügt:{line}§7Titel: §b{title}{line}§7Beschreibung: §b{desc}{line}§7Preis: §b{price}"
+addrank-cmd-success: "§aDer Rang §7{rank}§a wurde erfolgreich hinzugefügt:{line}§7Titel: §b{title}{line}§7Beschreibung: §b{desc}{line}§7Preis: §b{price}{line}§7Expiry Time: §b{expiryTime}"
 
 removerank-cmd-rank-not-added: "§cDer Rang §7{rank}§c ist nicht vorhanden!"
 removerank-cmd-success: "§aDer Rang §7{rank}§a wurde erfolgreich von der RangShop-Liste entfernt."
@@ -31,7 +31,7 @@ forms-menu-title: "§bRang§7Shop"
 forms-menu-content: "§rBitte wähle einen Rang aus."
 
 forms-buyRank-title: "§bRang§7Shop"
-forms-buyRank-content: "§eRang-Beschreibung:{line}§r{description}"
+forms-buyRank-content: "§eRang-Beschreibung:{line}§r{description}{line}{line}§6Preis: §b{price}{line}§6Ablaufzeit: §b{expiryTime}"
 forms-buyRank-submit: "§aKaufen"
 forms-buyRank-cancel: "§cAbbrechen"
 forms-buyRank-cancel-msg: "§cAbgebrochen!"

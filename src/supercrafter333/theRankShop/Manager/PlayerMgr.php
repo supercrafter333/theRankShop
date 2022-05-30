@@ -2,6 +2,8 @@
 
 namespace supercrafter333\theRankShop\Manager;
 
+use alvin0319\GroupsAPI\GroupsAPI;
+use DateTime;
 use pocketmine\player\Player;
 use pocketmine\utils\AssumptionFailedError;
 use supercrafter333\theRankShop\Events\RankBoughtEvent;
@@ -10,6 +12,7 @@ use supercrafter333\theRankShop\Lang\LanguageMgr;
 use supercrafter333\theRankShop\Lang\Messages;
 use supercrafter333\theRankShop\Manager\Info\RankInfo;
 use supercrafter333\theRankShop\theRankShop;
+use function class_exists;
 
 /**
  *
@@ -40,13 +43,18 @@ class PlayerMgr
 
     /**
      * @param string $rankName
+     * @param DateTime|null $expireAt
      * @return bool
      */
-    public function setRank(string $rankName): bool
+    public function setRank(string $rankName, DateTime|null $expireAt = null): bool
     {
-        return RankManagementPluginMgr::getRankPlugin()->setRankOfPlayer($this->player, $rankName);
+        return RankManagementPluginMgr::getRankPlugin()->setRankOfPlayer($this->player, $rankName, $expireAt);
     }
 
+    /**
+     * @param string $rankName
+     * @return bool
+     */
     public function havingHigherRank(string $rankName): bool
     {
         $now = $this->getRank();
@@ -64,6 +72,7 @@ class PlayerMgr
     /**
      * @param RankInfo $rankInfo
      * @return int - 0 = event cancelled, 1 = successfully, 2 = same or higher rank
+     * @throws \Exception
      */
     public function buyRank(RankInfo $rankInfo): int
     {
@@ -77,7 +86,7 @@ class PlayerMgr
 
         if ($name == null || $price == null) return throw new AssumptionFailedError("[theRankShop] -> Rank-Name and/or Rank-Price is null!");
 
-        if ($playerRank == $name || $this->havingHigherRank($name)) return 2;
+        if ($playerRank == $name || $this->havingHigherRank($name) || $this->havingHigherRank_GroupsAPI($name)) return 2;
 
         $ev = new RankBuyEvent($this->player, $name, LanguageMgr::getMsg(Messages::MSG_RANKBUY_CANCELLED));
         $ev->call();
@@ -86,10 +95,25 @@ class PlayerMgr
         // INFO: Money-Check was removed from this function because of compatibility problems with BedrockEconomy!!
 
         theRankShop::getEconomyProvider()->takeMoney($this->player, $price);
-        $setRank = $this->setRank($name);
+        $setRank = $this->setRank($name, $rankInfo->getExpireAt());
         if (!$setRank) return throw new AssumptionFailedError("[theRankShop] -> Can't set rank ($name) for player (" . $this->player->getName() . ")!");
         $ev = new RankBoughtEvent($this->player, $name);
         $ev->call();
         return 1;
+    }
+
+    /**
+     * @param string $rankName
+     * @return bool
+     */
+    protected function havingHigherRank_GroupsAPI(string $rankName): bool
+    {
+        if (!class_exists(GroupsAPI::class) ||
+            theRankShop::getInstance()->getServer()->getPluginManager()->getPlugin("GroupsAPI") === null)
+            return false;
+
+        if (($rank = GroupsAPI::getInstance()->getGroupManager()->getGroup($rankName)) === null) return false;
+
+        return GroupsAPI::getInstance()->getMemberManager()->getMember($this->player->getName())->getHighestGroup()->getPriority() > $rank->getPriority();
     }
 }

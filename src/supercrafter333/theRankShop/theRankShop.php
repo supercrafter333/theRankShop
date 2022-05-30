@@ -16,6 +16,7 @@ use supercrafter333\theRankShop\Lang\Languages;
 use supercrafter333\theRankShop\Manager\CommandMgr;
 use supercrafter333\theRankShop\Manager\PurePermsMgr;
 use supercrafter333\theRankShop\Manager\RankManagementPluginMgr;
+use function str_contains;
 
 /**
  * PluginBase of theRankShop.
@@ -68,6 +69,10 @@ class theRankShop extends PluginBase
      */
     public function onEnable(): void
     {
+        if (str_contains($this->getDescription()->getVersion(), '-dev')) {
+            $this->getLogger()->warning("DEVELOPMENT VERSION!! You're using a development-version of theRankShop. This version can contain bugs. Please only use this version if you are sure of what you are doing.");
+        }
+
         libPiggyEconomy::init();
         if (mb_strtolower($this->getConfig()->get("economy-plugin")) == "economyapi") {
             self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "economyapi"]);

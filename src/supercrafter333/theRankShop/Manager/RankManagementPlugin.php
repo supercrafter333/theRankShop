@@ -2,6 +2,7 @@
 
 namespace supercrafter333\theRankShop\Manager;
 
+use DateTime;
 use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
 
@@ -19,9 +20,10 @@ interface RankManagementPlugin
      * Will set the rank of a player.
      * @param Player $player
      * @param string $rankName
+     * @param DateTime|null $expireAt
      * @return bool
      */
-    public function setRankOfPlayer(Player $player, string $rankName): bool;
+    public function setRankOfPlayer(Player $player, string $rankName, DateTime|null $expireAt = null): bool;
 
     /**
      * Will return the rank name of a player.

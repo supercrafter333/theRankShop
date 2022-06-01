@@ -95,7 +95,7 @@ class PlayerMgr
         // INFO: Money-Check was removed from this function because of compatibility problems with BedrockEconomy!!
 
         theRankShop::getEconomyProvider()->takeMoney($this->player, $price);
-        $setRank = $this->setRank($name, $rankInfo->getExpireAt());
+        $setRank = $this->setRank($name, $ev->getExpireAt());
         if (!$setRank) return throw new AssumptionFailedError("[theRankShop] -> Can't set rank ($name) for player (" . $this->player->getName() . ")!");
         $ev = new RankBoughtEvent($this->player, $name);
         $ev->call();

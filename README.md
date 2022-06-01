@@ -3,7 +3,7 @@
 
 > **Development Version!**
 > 
-> This is a development-version of theRankShop.Development-versions aren't stable releases and can contain bugs.
+> This is a development-version of theRankShop. Development-versions aren't stable releases and can contain bugs.
 > 
 > Please only use this version if you are sure of what you are doing.
 
@@ -14,12 +14,13 @@
 
 ### Features
 - simple and user-friendly
-- very easy setup
-- multi-language-system
+- temporary ranks
 - buyer-protection ([#7](https://github.com/supercrafter333/theRankShop/issues/7))
 - price calculating / rank upgrades ([#7](https://github.com/supercrafter333/theRankShop/issues/7))
-- extension support (developers can add their own rank plugin easily)
 - easily add and remove ranks per command
+- very easy setup
+- multi-language-system
+- extension support (developers can add their own rank plugin easily)
 
 ### Supported plugins
 Newer plugins:

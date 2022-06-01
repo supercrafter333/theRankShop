@@ -88,7 +88,7 @@ class PlayerMgr
 
         if ($playerRank == $name || $this->havingHigherRank($name) || $this->havingHigherRank_GroupsAPI($name)) return 2;
 
-        $ev = new RankBuyEvent($this->player, $name, LanguageMgr::getMsg(Messages::MSG_RANKBUY_CANCELLED));
+        $ev = new RankBuyEvent($this->player, $name, LanguageMgr::getMsg(Messages::MSG_RANKBUY_CANCELLED), $rankInfo->getExpireAt());
         $ev->call();
         if ($ev->isCancelled()) return 0;
 

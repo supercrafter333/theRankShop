@@ -11,9 +11,11 @@ use jojoe77777\FormAPI\Form;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
+use r3pt1s\GroupSystem\GroupSystem;
 use supercrafter333\theRankShop\Commands\theRankShopCommand;
 use supercrafter333\theRankShop\Lang\Languages;
 use supercrafter333\theRankShop\Manager\CommandMgr;
+use supercrafter333\theRankShop\Manager\GroupSystemMgr;
 use supercrafter333\theRankShop\Manager\PurePermsMgr;
 use supercrafter333\theRankShop\Manager\RankManagementPluginMgr;
 use function str_contains;
@@ -91,7 +93,13 @@ class theRankShop extends PluginBase
             RankManagementPluginMgr::setRankManagementClass(new PurePermsMgr());
         } elseif (class_exists(PurePerms::class)) {
             RankManagementPluginMgr::setRankManagementClass(new PurePermsMgr());
-        } # GroupsAPI is default
+        } elseif (mb_strtolower($this->getConfig()->get("rank-management-plugin")) == "groupsystem") {
+            RankManagementPluginMgr::setRankManagementClass(new GroupSystemMgr());
+        } elseif (class_exists(GroupSystem::class)) {
+            RankManagementPluginMgr::setRankManagementClass(new GroupSystemMgr());
+        }
+        # GroupsAPI is default
+
 
         $cmdInfo = CommandMgr::getCommandInfo("therankshop");
 

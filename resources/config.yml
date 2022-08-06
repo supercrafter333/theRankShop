@@ -18,6 +18,7 @@ economy-plugin: "auto"
 # Rank-Management plugin
 # "groupsapi" => GroupsAPI
 # "groupsystem" => GroupSystem
+# "ranksystem" => RankSystem
 # "pureperms" => PurePerms
 # "auto" => automatical detection  [DEFAULT]
 rank-management-plugin: "auto"

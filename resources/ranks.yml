@@ -14,3 +14,14 @@
 # You can also use '/therankshop addrank <rankname> <uiTitle> <description> <price>' to add a rank
 # And '/therankshop removerank <rankname>' to remove a rank
 ###################################################
+
+VIP:
+  uiTitle: "§lVIP-Rank§r{line}§d${price}§6|§7{expiryTime}"
+  desc: "A mysterious rank..."
+  price: 300
+  expiryTime: "30d"
+
+VIP+:
+  uiTitle: "§lVIP-Rank§r{line}§d${price}§6|§7{expiryTime}"
+  desc: "A mysterious rank..."
+  price: 1000

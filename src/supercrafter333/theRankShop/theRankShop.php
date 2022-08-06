@@ -18,6 +18,7 @@ use supercrafter333\theRankShop\Manager\CommandMgr;
 use supercrafter333\theRankShop\Manager\GroupSystemMgr;
 use supercrafter333\theRankShop\Manager\PurePermsMgr;
 use supercrafter333\theRankShop\Manager\RankManagementPluginMgr;
+use supercrafter333\theRankShop\Manager\RankSystemMgr;
 use function str_contains;
 
 /**
@@ -71,33 +72,36 @@ class theRankShop extends PluginBase
      */
     public function onEnable(): void
     {
-        if (str_contains($this->getDescription()->getVersion(), '-dev')) {
+        if (str_contains($this->getDescription()->getVersion(), '-dev'))
             $this->getLogger()->warning("DEVELOPMENT VERSION!! You're using a development-version of theRankShop. This version can contain bugs. Please only use this version if you are sure of what you are doing.");
-        }
 
         libPiggyEconomy::init();
-        if (mb_strtolower($this->getConfig()->get("economy-plugin")) == "economyapi") {
+        if (mb_strtolower($this->getConfig()->get("economy-plugin")) == "economyapi") 
             self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "economyapi"]);
-        } elseif (mb_strtolower($this->getConfig()->get("economy-plugin")) == "bedrockeconomy") {
+         elseif (mb_strtolower($this->getConfig()->get("economy-plugin")) == "bedrockeconomy") 
             self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "bedrockeconomy"]);
-        } elseif (class_exists(EconomyAPI::class)) {
+         elseif (class_exists(EconomyAPI::class)) 
             self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "economyapi"]);
-        } elseif (class_exists(BedrockEconomy::class)) {
+         elseif (class_exists(BedrockEconomy::class)) 
             self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "bedrockeconomy"]);
-        } else {
+         else {
             $this->getLogger()->error("Can't find any supported economy plugin. Disabling theRankShop...");
             $this->getServer()->getPluginManager()->disablePlugin($this);
         }
 
-        if (mb_strtolower($this->getConfig()->get("rank-management-plugin")) == "pureperms") {
+        if (mb_strtolower($this->getConfig()->get("rank-management-plugin")) == "pureperms") 
             RankManagementPluginMgr::setRankManagementClass(new PurePermsMgr());
-        } elseif (class_exists(PurePerms::class)) {
+         elseif (class_exists(PurePerms::class)) 
             RankManagementPluginMgr::setRankManagementClass(new PurePermsMgr());
-        } elseif (mb_strtolower($this->getConfig()->get("rank-management-plugin")) == "groupsystem") {
+         elseif (mb_strtolower($this->getConfig()->get("rank-management-plugin")) == "groupsystem") 
             RankManagementPluginMgr::setRankManagementClass(new GroupSystemMgr());
-        } elseif (class_exists(GroupSystem::class)) {
+         elseif (class_exists(GroupSystem::class)) 
             RankManagementPluginMgr::setRankManagementClass(new GroupSystemMgr());
-        }
+         elseif (mb_strtolower($this->getConfig()->get("rank-management-plugin")) == "ranksystem")
+            RankManagementPluginMgr::setRankManagementClass(new RankSystemMgr());
+         elseif (class_exists(GroupSystem::class))
+            RankManagementPluginMgr::setRankManagementClass(new RankSystemMgr());
+        
         # GroupsAPI is default
 
 

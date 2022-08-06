@@ -12,6 +12,9 @@
 
 **A simple and user-friendly rank shop plugin with extension support and multi-language-system.**
 
+### Information for temporary ranks
+Some rank/group plugins have problems with temporary ranks! But these issues are not always bugs from theRankShop. You can open an issue in theRankShop's github-repository, but please don't be surprised if it closes.
+
 ### Features
 - simple and user-friendly
 - temporary ranks

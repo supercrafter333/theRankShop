@@ -7,6 +7,8 @@ description: A simple and user-friendly rank shop plugin with extension support 
 
 softdepend:
   - "GroupsAPI"
+  - "GroupSystem"
+  - "RankSystem"
   - "BedrockEconomy"
   - "PurePerms"
   - "EconomyAPI"

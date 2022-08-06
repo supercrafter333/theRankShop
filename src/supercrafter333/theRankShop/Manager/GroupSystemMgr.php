@@ -36,7 +36,7 @@ class GroupSystemMgr implements RankManagementPlugin
             return false;
 
         if (PlayerGroupManager::getInstance()->hasGroup($player, $group)
-            || PlayerGroupManager::getInstance()->getNextHighestGroup($player)->getGroup()->isHigher($group))
+            || $group->isHigher(PlayerGroupManager::getInstance()->getGroup($player)->getGroup()))
             return false;
 
         return PlayerGroupManager::getInstance()->addGroup($player, new PlayerGroup($group, GroupPriority::HIGH(), $expireAt));

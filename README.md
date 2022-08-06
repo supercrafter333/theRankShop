@@ -31,6 +31,7 @@ Newer plugins:
 - [BedrockEconomy](https://github.com/cooldogedev/BedrockEconomy)
 - [GroupsAPI](https://github.com/alvin0319/GroupsAPI)
 - [GroupSystem](https://github.com/r3pt1s/GroupSystem)
+- [RankSystem](https://github.com/IvanCraft623/RankSystem)
 
 Older plugins:
 - [EconomyAPI](https://github.com/poggit-orphanage/EconomyS/tree/master/EconomyAPI) (no longer maintained)

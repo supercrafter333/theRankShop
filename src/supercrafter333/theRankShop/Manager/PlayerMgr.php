@@ -10,6 +10,7 @@ use pocketmine\utils\AssumptionFailedError;
 use r3pt1s\GroupSystem\group\Group;
 use r3pt1s\GroupSystem\group\GroupManager;
 use r3pt1s\GroupSystem\GroupSystem;
+use r3pt1s\GroupSystem\player\PlayerGroup;
 use r3pt1s\GroupSystem\player\PlayerGroupManager;
 use supercrafter333\theRankShop\Events\RankBoughtEvent;
 use supercrafter333\theRankShop\Events\RankBuyEvent;
@@ -131,9 +132,7 @@ class PlayerMgr
 
         if (($rank = GroupManager::getInstance()->getGroupByName($rankName)) === null) return false;
 
-        $nextHigher = PlayerGroupManager::getInstance()->getNextHighestGroup($this->player);
-        //return GroupsAPI::getInstance()->getMemberManager()->getMember($this->player->getName())->getHighestGroup()->getPriority() > $rank->getPriority();
         return PlayerGroupManager::getInstance()->hasGroup($this->player, $rank)
-            || ($nextHigher?->getGroup()?->isHigher($rank) !== null);
+            || $rank->isHigher(PlayerGroupManager::getInstance()->getGroup($this->player)->getGroup());
     }
 }

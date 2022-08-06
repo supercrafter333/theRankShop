@@ -7,6 +7,7 @@ use alvin0319\GroupsAPI\util\Util;
 use DateTime;
 use pocketmine\player\Player;
 use pocketmine\utils\AssumptionFailedError;
+use r3pt1s\GroupSystem\group\Group;
 use r3pt1s\GroupSystem\group\GroupManager;
 use r3pt1s\GroupSystem\GroupSystem;
 use r3pt1s\GroupSystem\player\PlayerGroupManager;
@@ -130,8 +131,9 @@ class PlayerMgr
 
         if (($rank = GroupManager::getInstance()->getGroupByName($rankName)) === null) return false;
 
+        $nextHigher = PlayerGroupManager::getInstance()->getNextHighestGroup($this->player);
         //return GroupsAPI::getInstance()->getMemberManager()->getMember($this->player->getName())->getHighestGroup()->getPriority() > $rank->getPriority();
         return PlayerGroupManager::getInstance()->hasGroup($this->player, $rank)
-            || PlayerGroupManager::getInstance()->getNextHighestGroup($this->player)->getGroup()->isHigher($rank);
+            || ($nextHigher?->getGroup()?->isHigher($rank) !== null);
     }
 }

@@ -17,7 +17,7 @@ class RankSystemMgr implements RankManagementPlugin
      */
     public function getRank(string $rankName): Rank|null
     {
-        return RankSystem::getInstance()->getRankManager()->getByName($rankName);
+        return RankSystem::getInstance()->getRankManager()->getRank($rankName);
     }
 
     /**

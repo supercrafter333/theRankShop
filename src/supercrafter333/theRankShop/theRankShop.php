@@ -7,6 +7,7 @@ use arie\yamlcomments\YamlComments;
 use cooldogedev\BedrockEconomy\BedrockEconomy;
 use DaPigGuy\libPiggyEconomy\libPiggyEconomy;
 use DaPigGuy\libPiggyEconomy\providers\EconomyProvider;
+use IvanCraft623\RankSystem\RankSystem;
 use jojoe77777\FormAPI\Form;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\plugin\PluginBase;
@@ -41,21 +42,6 @@ class theRankShop extends PluginBase
     {
         self::$instance = $this;
 
-        if (!class_exists(Form::class)) { //FormAPI cannot found
-            $this->getServer()->getLogger()->error("CANNOT FIND FormAPI LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
-            $this->getServer()->getPluginManager()->disablePlugin($this);
-        }
-
-        if (!class_exists(libPiggyEconomy::class)) { //libPiggyEconomy cannot found
-            $this->getServer()->getLogger()->error("CANNOT FIND libPiggyEconomy LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
-            $this->getServer()->getPluginManager()->disablePlugin($this);
-        }
-
-        if (!class_exists(YamlComments::class)) { //YamlComments cannot found
-            $this->getServer()->getLogger()->error("CANNOT FIND YamlComments LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
-            $this->getServer()->getPluginManager()->disablePlugin($this);
-        }
-
         //Save config files and setup directorys
         @mkdir($this->getDataFolder() . "languages");
         $this->saveResource("config.yml");
@@ -72,6 +58,22 @@ class theRankShop extends PluginBase
      */
     public function onEnable(): void
     {
+        if (!class_exists(Form::class)) { //FormAPI cannot found
+            $this->getServer()->getLogger()->error("CANNOT FIND FormAPI LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
+
+        if (!class_exists(libPiggyEconomy::class)) { //libPiggyEconomy cannot found
+            $this->getServer()->getLogger()->error("CANNOT FIND libPiggyEconomy LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
+
+        if (!class_exists(YamlComments::class)) { //YamlComments cannot found
+            $this->getServer()->getLogger()->error("CANNOT FIND YamlComments LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
+
+
         if (str_contains($this->getDescription()->getVersion(), '-dev'))
             $this->getLogger()->warning("DEVELOPMENT VERSION!! You're using a development-version of theRankShop. This version can contain bugs. Please only use this version if you are sure of what you are doing.");
 
@@ -99,7 +101,7 @@ class theRankShop extends PluginBase
             RankManagementPluginMgr::setRankManagementClass(new GroupSystemMgr());
          elseif (mb_strtolower($this->getConfig()->get("rank-management-plugin")) == "ranksystem")
             RankManagementPluginMgr::setRankManagementClass(new RankSystemMgr());
-         elseif (class_exists(GroupSystem::class))
+         elseif (class_exists(RankSystem::class))
             RankManagementPluginMgr::setRankManagementClass(new RankSystemMgr());
         
         # GroupsAPI is default

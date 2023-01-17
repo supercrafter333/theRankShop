@@ -1,11 +1,5 @@
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ca6cWPpERp)
-# theRankShop - v1.3.1-dev   [![](https://poggit.pmmp.io/shield.state/theRankShop)](https://poggit.pmmp.io/p/theRankShop) [![](https://poggit.pmmp.io/shield.dl.total/theRankShop)](https://poggit.pmmp.io/p/theRankShop)
-
-> **Development Version!**
-> 
-> This is a development-version of theRankShop. Development-versions aren't stable releases and can contain bugs.
-> 
-> Please only use this version if you are sure of what you are doing.
+# theRankShop - v1.3.1   [![](https://poggit.pmmp.io/shield.state/theRankShop)](https://poggit.pmmp.io/p/theRankShop) [![](https://poggit.pmmp.io/shield.dl.total/theRankShop)](https://poggit.pmmp.io/p/theRankShop)
 
 <br />
 

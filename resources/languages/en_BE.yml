@@ -1,7 +1,7 @@
 # Here you can select the messages of theRankShop
 
 # en_GB by @supercrafter333 | 01.03.2022
-# for version: 1.0.0, 1.2.0, 1.2.0 and higher
+# for version: 1.0.0, 1.2.0, 1.2.0, 1.3.1 and higher
 
 
 
@@ -12,14 +12,14 @@ msg-rankbuy-noMoney: "§cYou don't have enough money for the selected rank! (Mis
 
 msg-rankbuy-higherRank: "§cYou're already having a higher rank than §r{rank}§c!"
 
-msg-rankbuy-successfully: "§aSuccessfully bought the §r{rank}§a rank."
+msg-rankbuy-successfully: "§aSuccessfully bought the §r{rank}§a rank. Your rank will expire at: §b{expireAt}"
 
 msg-rankbuy-alreadyOwned: "§eYou already own this rank."
 
 # /therankshop command
 addrank-cmd-rank-not-found: "§cThe rank §7{rank}§c cannot be found!"
 addrank-cmd-rank-already-added: "§cThe rank §7{rank}§c was already added!"
-addrank-cmd-success: "§aSuccessfully addded rank §7{rank}§a:{line}§7Title: §b{title}{line}§7Description: §b{desc}{line}§7Price: §b{price}"
+addrank-cmd-success: "§aSuccessfully addded rank §7{rank}§a:{line}§7Title: §b{title}{line}§7Description: §b{desc}{line}§7Price: §b{price}{line}§7Expiry Time: §b{expiryTime}"
 
 removerank-cmd-rank-not-added: "§cThe rank §7{rank}§c ins't added!"
 removerank-cmd-success: "§aSuccessfully removed rank §7{rank}§a from the rankshop-list."
@@ -31,7 +31,7 @@ forms-menu-title: "§bRank§7Shop"
 forms-menu-content: "§rPlease select a rank."
 
 forms-buyRank-title: "§bRank§7Shop"
-forms-buyRank-content: "§eRank-Description:{line}§r{description}"
+forms-buyRank-content: "§eRank-Description:{line}§r{description}{line}{line}§6Price: §b{price}{line}§6Expiry time: §b{expiryTime}"
 forms-buyRank-submit: "§aBuy"
 forms-buyRank-cancel: "§cCancel"
 forms-buyRank-cancel-msg: "§cCancelled!"

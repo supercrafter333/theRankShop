@@ -1,23 +1,31 @@
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ca6cWPpERp)
-# theRankShop - v1.2.1   [![](https://poggit.pmmp.io/shield.state/theRankShop)](https://poggit.pmmp.io/p/theRankShop) [![](https://poggit.pmmp.io/shield.dl.total/theRankShop)](https://poggit.pmmp.io/p/theRankShop)
+# theRankShop - v1.3.1   [![](https://poggit.pmmp.io/shield.state/theRankShop)](https://poggit.pmmp.io/p/theRankShop) [![](https://poggit.pmmp.io/shield.dl.total/theRankShop)](https://poggit.pmmp.io/p/theRankShop)
+
+<br />
 
 
 **A simple and user-friendly rank shop plugin with extension support and multi-language-system.**
 
+### Information for temporary ranks
+Some rank/group plugins have problems with temporary ranks! But these issues are not always bugs from theRankShop. You can open an issue in theRankShop's github-repository, but please don't be surprised if it closes.
+
 ### Features
 - simple and user-friendly
-- very easy setup
-- multi-language-system
+- temporary ranks
 - buyer-protection ([#7](https://github.com/supercrafter333/theRankShop/issues/7))
 - price calculating / rank upgrades ([#7](https://github.com/supercrafter333/theRankShop/issues/7))
-- extension support (developers can add their own rank plugin easily)
 - easily add and remove ranks per command
+- very easy setup
+- multi-language-system
+- extension support (developers can add their own rank plugin easily)
 
 ### Supported plugins
 Newer plugins:
 
 - [BedrockEconomy](https://github.com/cooldogedev/BedrockEconomy)
 - [GroupsAPI](https://github.com/alvin0319/GroupsAPI)
+- [GroupSystem](https://github.com/r3pt1s/GroupSystem)
+- [RankSystem](https://github.com/IvanCraft623/RankSystem)
 
 Older plugins:
 - [EconomyAPI](https://github.com/poggit-orphanage/EconomyS/tree/master/EconomyAPI) (no longer maintained)

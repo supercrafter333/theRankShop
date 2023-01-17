@@ -7,15 +7,20 @@ use arie\yamlcomments\YamlComments;
 use cooldogedev\BedrockEconomy\BedrockEconomy;
 use DaPigGuy\libPiggyEconomy\libPiggyEconomy;
 use DaPigGuy\libPiggyEconomy\providers\EconomyProvider;
+use IvanCraft623\RankSystem\RankSystem;
 use jojoe77777\FormAPI\Form;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
+use r3pt1s\GroupSystem\GroupSystem;
 use supercrafter333\theRankShop\Commands\theRankShopCommand;
 use supercrafter333\theRankShop\Lang\Languages;
 use supercrafter333\theRankShop\Manager\CommandMgr;
+use supercrafter333\theRankShop\Manager\GroupSystemMgr;
 use supercrafter333\theRankShop\Manager\PurePermsMgr;
 use supercrafter333\theRankShop\Manager\RankManagementPluginMgr;
+use supercrafter333\theRankShop\Manager\RankSystemMgr;
+use function str_contains;
 
 /**
  * PluginBase of theRankShop.
@@ -37,21 +42,6 @@ class theRankShop extends PluginBase
     {
         self::$instance = $this;
 
-        if (!class_exists(Form::class)) { //FormAPI cannot found
-            $this->getServer()->getLogger()->error("CANNOT FIND FormAPI LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
-            $this->getServer()->getPluginManager()->disablePlugin($this);
-        }
-
-        if (!class_exists(libPiggyEconomy::class)) { //libPiggyEconomy cannot found
-            $this->getServer()->getLogger()->error("CANNOT FIND libPiggyEconomy LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
-            $this->getServer()->getPluginManager()->disablePlugin($this);
-        }
-
-        if (!class_exists(YamlComments::class)) { //YamlComments cannot found
-            $this->getServer()->getLogger()->error("CANNOT FIND YamlComments LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
-            $this->getServer()->getPluginManager()->disablePlugin($this);
-        }
-
         //Save config files and setup directorys
         @mkdir($this->getDataFolder() . "languages");
         $this->saveResource("config.yml");
@@ -68,25 +58,54 @@ class theRankShop extends PluginBase
      */
     public function onEnable(): void
     {
+        if (!class_exists(Form::class)) { //FormAPI cannot found
+            $this->getServer()->getLogger()->error("CANNOT FIND FormAPI LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
+
+        if (!class_exists(libPiggyEconomy::class)) { //libPiggyEconomy cannot found
+            $this->getServer()->getLogger()->error("CANNOT FIND libPiggyEconomy LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
+
+        if (!class_exists(YamlComments::class)) { //YamlComments cannot found
+            $this->getServer()->getLogger()->error("CANNOT FIND YamlComments LIBRARY!! Please download theRankShop form poggit.pmmp.io! theRankShop will be unloaded now.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
+
+
+        if (str_contains($this->getDescription()->getVersion(), '-dev'))
+            $this->getLogger()->warning("DEVELOPMENT VERSION!! You're using a development-version of theRankShop. This version can contain bugs. Please only use this version if you are sure of what you are doing.");
+
         libPiggyEconomy::init();
-        if (mb_strtolower($this->getConfig()->get("economy-plugin")) == "economyapi") {
+        if (mb_strtolower($this->getConfig()->get("economy-plugin")) == "economyapi") 
             self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "economyapi"]);
-        } elseif (mb_strtolower($this->getConfig()->get("economy-plugin")) == "bedrockeconomy") {
+         elseif (mb_strtolower($this->getConfig()->get("economy-plugin")) == "bedrockeconomy") 
             self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "bedrockeconomy"]);
-        } elseif (class_exists(EconomyAPI::class)) {
+         elseif (class_exists(EconomyAPI::class)) 
             self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "economyapi"]);
-        } elseif (class_exists(BedrockEconomy::class)) {
+         elseif (class_exists(BedrockEconomy::class)) 
             self::$economyProvider = libPiggyEconomy::getProvider(["provider" => "bedrockeconomy"]);
-        } else {
+         else {
             $this->getLogger()->error("Can't find any supported economy plugin. Disabling theRankShop...");
             $this->getServer()->getPluginManager()->disablePlugin($this);
         }
 
-        if (mb_strtolower($this->getConfig()->get("rank-management-plugin")) == "pureperms") {
+        if (mb_strtolower($this->getConfig()->get("rank-management-plugin")) == "pureperms") 
             RankManagementPluginMgr::setRankManagementClass(new PurePermsMgr());
-        } elseif (class_exists(PurePerms::class)) {
+         elseif (class_exists(PurePerms::class)) 
             RankManagementPluginMgr::setRankManagementClass(new PurePermsMgr());
-        } # GroupsAPI is default
+         elseif (mb_strtolower($this->getConfig()->get("rank-management-plugin")) == "groupsystem") 
+            RankManagementPluginMgr::setRankManagementClass(new GroupSystemMgr());
+         elseif (class_exists(GroupSystem::class)) 
+            RankManagementPluginMgr::setRankManagementClass(new GroupSystemMgr());
+         elseif (mb_strtolower($this->getConfig()->get("rank-management-plugin")) == "ranksystem")
+            RankManagementPluginMgr::setRankManagementClass(new RankSystemMgr());
+         elseif (class_exists(RankSystem::class))
+            RankManagementPluginMgr::setRankManagementClass(new RankSystemMgr());
+        
+        # GroupsAPI is default
+
 
         $cmdInfo = CommandMgr::getCommandInfo("therankshop");
 

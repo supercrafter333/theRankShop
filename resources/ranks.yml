@@ -5,10 +5,23 @@
 ####################################
 ### Example: ###
 #rankName:
-#  uiTitle: "NeW RaNk{line}Price: {price}"
+#  uiTitle: "§bNeW RaNk{line}§d{price}$§6|§7{expiryTime}"
 #  desc: "Description of the Rank."
 #  price: 300
+#  expiryTime: "3d"
 ####################################
+# !!! 'expiryTime' is optional - if you don't add it, the rank won't expire !!!
 # You can also use '/therankshop addrank <rankname> <uiTitle> <description> <price>' to add a rank
 # And '/therankshop removerank <rankname>' to remove a rank
 ###################################################
+
+VIP:
+  uiTitle: "§lVIP-Rank§r{line}§d${price}§6|§7{expiryTime}"
+  desc: "A mysterious rank..."
+  price: 300
+  expiryTime: "30d"
+
+VIP+:
+  uiTitle: "§lVIP-Rank§r{line}§d${price}§6|§7{expiryTime}"
+  desc: "A mysterious rank..."
+  price: 1000

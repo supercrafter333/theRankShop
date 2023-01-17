@@ -74,7 +74,7 @@ class theRankShopDefaultForms
             if ($playerRank !== null) {
                 if (($newPrice = RankMgr::calculateRankPrices($rank, $playerRank)) !== null) $price = $newPrice;
             }*/
-            $uiTitle = str_replace(["{rank}", "{price}", "{line}"], [$rankInfo->getRankName(), $rankInfo->getPrice(), "\n"], $rankInfo->getUiTitle());
+            $uiTitle = str_replace(["{rank}", "{price}", "{expiryTime}", "{line}"], [$rankInfo->getRankName(), $rankInfo->getPrice(), $rankInfo->getExpireAtRaw() !== null ? $rankInfo->getExpireAtRaw() : "LIFETIME", "\n"], $rankInfo->getUiTitle());
             $form->addButton($uiTitle, -1, "", $rank);
         }
         $form->sendToPlayer($player);
@@ -132,7 +132,7 @@ class theRankShopDefaultForms
 
                         switch ($buyRank) {
                             case 1:
-                                $player->sendMessage(str_replace(["{rank}", "{price}"], [$rankInfo->getRankName(), $rankInfo->getPrice()], LanguageMgr::getMsg(Messages::MSG_RANKBUY_SUCCESS)));
+                                $player->sendMessage(str_replace(["{rank}", "{price}", "{expireAt}"], [$rankInfo->getRankName(), $rankInfo->getPrice(), $rankInfo->getExpireAt() !== null ? $rankInfo->getExpireAt()->format("d.m.Y H:i:s") : "NEVER"], LanguageMgr::getMsg(Messages::MSG_RANKBUY_SUCCESS)));
                                 $player->getWorld()->addSound($player->getPosition()->asVector3(), new GhastShootSound());
                                 return;
                             case 2:
@@ -144,7 +144,7 @@ class theRankShopDefaultForms
             }
         });
         $form->setTitle(LanguageMgr::getMsgWithNoExtras(Messages::FORMS_BUYRANK_TITLE));
-        $form->setContent(str_replace("{description}", $rankInfo->getDescription(), LanguageMgr::getMsg(Messages::FORMS_BUYRANK_CONT)));
+        $form->setContent(str_replace(["{description}", "{price}", "{expiryTime}"], [$rankInfo->getDescription(), $rankInfo->getPrice(), $rankInfo->getExpireAtRaw() !== null ? $rankInfo->getExpireAtRaw() : "NEVER"], LanguageMgr::getMsg(Messages::FORMS_BUYRANK_CONT)));
         $form->addButton(LanguageMgr::getMsg(Messages::FORMS_BUYRANK_SUBMIT), -1, "", "submit");
         $form->addButton(LanguageMgr::getMsg(Messages::FORMS_BUYRANK_CANCEL), -1, "", "cancel");
         $form->sendToPlayer($player);

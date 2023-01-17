@@ -14,6 +14,7 @@ use pocketmine\utils\TextFormat;
 use supercrafter333\theRankShop\Forms\theRankShopDefaultForms;
 use supercrafter333\theRankShop\Lang\LanguageMgr;
 use supercrafter333\theRankShop\Manager\CommandMgr;
+use supercrafter333\theRankShop\Manager\Info\RankInfo;
 use supercrafter333\theRankShop\Manager\RankManagementPluginMgr;
 use supercrafter333\theRankShop\Manager\RankMgr;
 use supercrafter333\theRankShop\theRankShop;
@@ -73,9 +74,15 @@ class theRankShopCommand extends Command implements PluginOwned
             $title = $args[2];
             $desc = $args[3];
             $price = $args[4];
+            $expTime = $args[5] ?? null;
 
             if (!is_numeric($price)) {
-                $s->sendMessage("§4Usage: §r/therankshop addrank <rankname: string> <title: string> <description: string> <price: int|float>");
+                $s->sendMessage("§4Usage: §r/therankshop addrank <rankname: string> <title: string> <description: string> <price: int|float> [time: string]");
+                return;
+            }
+
+            if ($expTime !== null && RankInfo::stringToTimestamp($expTime) === null) {
+                $s->sendMessage("§4Usage: §r/therankshop addrank <rankname: string> <title: string> <description: string> <price: int|float> [time: string]");
                 return;
             }
 
@@ -94,7 +101,8 @@ class theRankShopCommand extends Command implements PluginOwned
             $cfg->set($rankname, [
                 "uiTitle" => $title,
                 "desc" => $desc,
-                "price" => $price
+                "price" => $price,
+                "expiryTime" => $expTime
             ]);
             $cfg->save();
             $yaml_cms->emitComments();
@@ -106,7 +114,8 @@ class theRankShopCommand extends Command implements PluginOwned
                 "{rank}" => $rankname,
                 "{title}" => $rankInfo->getUiTitle(),
                 "{desc}" => $rankInfo->getDescription(),
-                "{price}" => (string)$rankInfo->getPrice()
+                "{price}" => (string)$rankInfo->getPrice(),
+                "{expiryTime}" => $rankInfo->getExpireAtRaw() !== null ? $rankInfo->getExpireAtRaw() : "NEVER"
             ]));
         } elseif ($args[0] == "removerank" || $args[0] == "rmrank") {
             if (!$s->hasPermission("theRankShop.cmd.removerank")) {

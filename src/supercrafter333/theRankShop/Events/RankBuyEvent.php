@@ -2,6 +2,7 @@
 
 namespace supercrafter333\theRankShop\Events;
 
+use DateTime;
 use pocketmine\event\Cancellable;
 use pocketmine\event\CancellableTrait;
 use pocketmine\event\Event;
@@ -18,8 +19,9 @@ class RankBuyEvent extends Event implements Cancellable
      * @param Player $player
      * @param string $rankName
      * @param string $messageOnCancel
+     * @param DateTime|null $expireAt
      */
-    public function __construct(private Player $player, private string $rankName, private string $messageOnCancel) {}
+    public function __construct(private Player $player, private string $rankName, private string $messageOnCancel, private DateTime|null $expireAt = null) {}
 
     /**
      * @return Player
@@ -59,5 +61,21 @@ class RankBuyEvent extends Event implements Cancellable
     public function getMessageOnCancel(): string
     {
         return $this->messageOnCancel;
+    }
+
+    /**
+     * @param DateTime|null $expireAt
+     */
+    public function setExpireAt(?DateTime $expireAt): void
+    {
+        $this->expireAt = $expireAt;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getExpireAt(): ?DateTime
+    {
+        return $this->expireAt;
     }
 }

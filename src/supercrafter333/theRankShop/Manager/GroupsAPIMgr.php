@@ -4,6 +4,8 @@ namespace supercrafter333\theRankShop\Manager;
 
 use alvin0319\GroupsAPI\group\Group;
 use alvin0319\GroupsAPI\GroupsAPI;
+use alvin0319\GroupsAPI\util\Util;
+use DateTime;
 use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
 
@@ -22,17 +24,19 @@ class GroupsAPIMgr implements RankManagementPlugin
     /**
      * @param Player $player
      * @param string $rankName
+     * @param DateTime|null $expireAt
      * @return bool
      */
-    public function setRankOfPlayer(Player $player, string $rankName): bool
+    public function setRankOfPlayer(Player $player, string $rankName, DateTime|null $expireAt = null): bool
     {
         if (($rank = $this->getRank($rankName)) === null) return false;
 
         $member = GroupsAPI::getInstance()->getMemberManager()->getMember($player->getName());
 
         if ($member->hasGroup($rank)) return true;
+        //if (!Util::canInteractTo($this->getRank($this->getRankOfPlayer($player)), $rank)) return false;
 
-        $member->addGroup($rank);
+        $member->addGroup($rank, $expireAt);
         return true;
     }
 

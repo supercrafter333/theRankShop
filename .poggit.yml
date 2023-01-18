@@ -11,6 +11,5 @@ projects:
     libs:
       - src: https://poggit.pmmp.io/ci/CLADevs/FormAPI-4.0/libFormAPI
       - src: https://poggit.pmmp.io/ci/supercrafter333/libPiggyEconomy/libPiggyEconomy
-      - src: "arisify/yamlcomments/yamlcomments"
-        branch: "dev"
+      - src: https://poggit.pmmp.io/ci/Arisify/yamlcomments/yamlcomments
 ...

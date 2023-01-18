@@ -96,8 +96,8 @@ class theRankShopCommand extends Command implements PluginOwned
                 return;
             }
 
+            $yaml_cms = new YamlComments(theRankShop::getInstance()->getDataFolder() . "ranks.yml");
             $cfg = theRankShop::getRankCfg();
-            $yaml_cms = new YamlComments($cfg->getPath());
             $cfg->set($rankname, [
                 "uiTitle" => $title,
                 "desc" => $desc,
@@ -135,8 +135,8 @@ class theRankShopCommand extends Command implements PluginOwned
                 return;
             }
 
+            $yaml_cms = new YamlComments(theRankShop::getInstance()->getDataFolder() . "ranks.yml");
             $cfg = theRankShop::getRankCfg();
-            $yaml_cms = new YamlComments($cfg->getPath());
             $cfg->remove($rankname);
             $cfg->save();
             $yaml_cms->emitComments();

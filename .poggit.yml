@@ -11,5 +11,5 @@ projects:
     libs:
       - src: https://poggit.pmmp.io/ci/supercrafter333/FormAPI/libFormAPI
       - src: https://poggit.pmmp.io/ci/supercrafter333/libPiggyEconomy/libPiggyEconomy
-      - src: https://poggit.pmmp.io/ci/Arisify/yamlcomments/yamlcomments
+      - src: https://poggit.pmmp.io/ci/supercrafter333/yamlcomments/yamlcomments
 ...

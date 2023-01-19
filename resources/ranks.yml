@@ -2,10 +2,17 @@
 ### theRankShop  |  (c) 2021-2022 by supercrafter333 ###
 ###################################################
 
-####################################
+##################################################################
+### `|`  = block text with trailing line break.
+### `|-` = block text, no trailing line break.
+### `>`  = "Markdown-style" block text (separate with empty lines) with trailing line break.
+### `>-` = *you know what it is.*
+##################################################################
 ### Example: ###
 #rankName:
-#  uiTitle: "§bNeW RaNk{line}§d{price}$§6|§7{expiryTime}"
+#  uiTitle: |-
+#    §bNeW RaNk
+#    §d{price}$§6|§7{expiryTime}
 #  desc: "Description of the Rank."
 #  price: 300
 #  expiryTime: "3d"
@@ -16,12 +23,16 @@
 ###################################################
 
 VIP:
-  uiTitle: "§lVIP-Rank§r{line}§d${price}§6|§7{expiryTime}"
+  uiTitle: |-
+    §lVIP-Rank§r
+    §d${price}§6|§7{expiryTime}
   desc: "A mysterious rank..."
   price: 300
   expiryTime: "30d"
 
 VIP+:
-  uiTitle: "§lVIP-Rank§r{line}§d${price}§6|§7{expiryTime}"
+  uiTitle: |-
+    §lVIP-Rank§r
+    §d${price}§6|§7{expiryTime}
   desc: "A mysterious rank..."
   price: 1000

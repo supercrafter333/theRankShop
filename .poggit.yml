@@ -7,9 +7,9 @@ projects:
   theRankShop:
     icon: "icon.png"
     path: ""
-    php: 8.0
+    php: 8.1
     libs:
-      - src: https://poggit.pmmp.io/ci/CLADevs/FormAPI-4.0/libFormAPI
+      - src: https://poggit.pmmp.io/ci/supercrafter333/FormAPI/libFormAPI
       - src: https://poggit.pmmp.io/ci/supercrafter333/libPiggyEconomy/libPiggyEconomy
       - src: https://poggit.pmmp.io/ci/Arisify/yamlcomments/yamlcomments
 ...

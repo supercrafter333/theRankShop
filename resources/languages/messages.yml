@@ -16,7 +16,12 @@ msg-rankbuy-alreadyOwned: "§eYou already own this rank."
 # /therankshop command
 addrank-cmd-rank-not-found: "§cThe rank §7{rank}§c cannot be found!"
 addrank-cmd-rank-already-added: "§cThe rank §7{rank}§c was already added!"
-addrank-cmd-success: "§aSuccessfully addded rank §7{rank}§a:{line}§7Title: §b{title}{line}§7Description: §b{desc}{line}§7Price: §b{price}{line}§7Expiry Time: §b{expiryTime}"
+addrank-cmd-success: |-
+  §aSuccessfully addded rank §7{rank}§a:
+  §7Title: §b{title}
+  §7Description: §b{desc}
+  §7Price: §b{price}
+  §7Expiry Time: §b{expiryTime}
 
 removerank-cmd-rank-not-added: "§cThe rank §7{rank}§c ins't added!"
 removerank-cmd-success: "§aSuccessfully removed rank §7{rank}§a from the rankshop-list."
@@ -28,7 +33,12 @@ forms-menu-title: "§bRank§7Shop"
 forms-menu-content: "§rPlease select a rank."
 
 forms-buyRank-title: "§bRank§7Shop"
-forms-buyRank-content: "§eRank-Description:{line}§r{description}{line}{line}§6Price: §b{price}{line}§6Expiry time: §b{expiryTime}"
+forms-buyRank-content: |-
+  §eRank-Description:
+  §r{description}
+  §6Price: §b{price}
+  §6Expiry time: §b{expiryTime}
+
 forms-buyRank-submit: "§aBuy"
 forms-buyRank-cancel: "§cCancel"
 forms-buyRank-cancel-msg: "§cCancelled!"

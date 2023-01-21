@@ -38,7 +38,7 @@ forms-menu-content: "§r請選擇地位"
 # 確認介面：
 forms-buyRank-title: "§b地位§7商店"
 forms-buyRank-content: |-
-  §e有關此地位
+  §e有關此地位：
   §r{description}
   §7價格： §b{price}
   §7期限： §b{expiryTime}

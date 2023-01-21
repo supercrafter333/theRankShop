@@ -1,0 +1,50 @@
+# theRankShop 系統提示
+
+
+
+# 提示
+msg-rankbuyevent-cancelled: "§4RankBuyEvent was cancelled!"
+
+msg-rankbuy-noMoney: "§c您的餘額不足以購買所選地位！ （仍需： {missing}）"
+
+msg-rankbuy-higherRank: "§c您已擁有較 §r{rank}§c 高的地位！"
+
+msg-rankbuy-successfully: "§a成功購買地位 §r{rank}§a ，滿期於： §b{expireAt}"
+
+msg-rankbuy-alreadyOwned: "§e您已擁有此地位。"
+
+# /therankshop 指令
+addrank-cmd-rank-not-found: "§c找不到地位 §7{rank}"
+addrank-cmd-rank-already-added: "§c地位 §7{rank}§c 已在過去被添加！"
+addrank-cmd-success: |-
+  §a成功添加地位 §7{rank}§a：
+  §7名稱： §b{title}
+  §7描述（有關此低位）： §b{desc}
+  §7價格： §b{price}
+  §7期限： §b{expiryTime}
+
+removerank-cmd-rank-not-added: "§c地位 §7{rank}§c 未曾被添加！"
+removerank-cmd-success: "§a成功從 RankShop 貨架移除地位 §7{rank}§a 。"
+
+# 表單介面
+forms-closeForm: "已關閉介面。"
+
+# 主介面：
+forms-menu-title: "§b地位§7商店"
+forms-menu-content: "§r請選擇低位"
+
+# 確認介面：
+forms-buyRank-title: "§b地位§7商店"
+forms-buyRank-content: |-
+  §e有關此低位：
+  §r{description}
+  §7價格： §b{price}
+  §7期限： §b{expiryTime}
+
+forms-buyRank-submit: "§a購買"
+forms-buyRank-cancel: "§c返回"
+forms-buyRank-cancel-msg: "§c已取消購買！"
+
+
+# 嚴禁修改 後果自負
+version: "1.3.2"

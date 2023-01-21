@@ -1,5 +1,7 @@
 # theRankShop 系統提示
 
+# zh_TW by @Endermanbugzjfc | 21.01.2023
+# for version: 1.4.0-dev and higher
 
 
 # 提示
@@ -47,4 +49,4 @@ forms-buyRank-cancel-msg: "§c已取消購買！"
 
 
 # 嚴禁修改 後果自負
-version: "1.3.2"
+version: "1.4.0-dev"

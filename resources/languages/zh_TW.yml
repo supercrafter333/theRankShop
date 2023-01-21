@@ -46,7 +46,3 @@ forms-buyRank-content: |-
 forms-buyRank-submit: "§a購買"
 forms-buyRank-cancel: "§c返回"
 forms-buyRank-cancel-msg: "§c已取消購買！"
-
-
-# 嚴禁修改 後果自負
-version: "1.4.0-dev"

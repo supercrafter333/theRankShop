@@ -5,6 +5,8 @@
 # Language(s)
 # en_GB -> British English
 # tr_TR -> Turkey (normal)
+# zh_CH -> Chinese (simplified)
+# zh_TW -> Chinese (traditional)
 # ger_DE -> German | Deutsch (normal)
 # custom -> Edit the message yourself
 language: "en_GB"

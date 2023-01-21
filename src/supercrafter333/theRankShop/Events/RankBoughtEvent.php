@@ -3,7 +3,6 @@
 namespace supercrafter333\theRankShop\Events;
 
 use DateTime;
-use pocketmine\event\CancellableTrait;
 use pocketmine\event\Event;
 use pocketmine\player\Player;
 

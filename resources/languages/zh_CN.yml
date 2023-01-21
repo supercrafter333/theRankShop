@@ -21,7 +21,7 @@ addrank-cmd-rank-already-added: "§c地位 §7{rank}§c 已在过去被添加！
 addrank-cmd-success: |-
   §a成功添加地位 §7{rank}§a：
   §7名称： §b{title}
-  §7描述（有关此低位）： §b{desc}
+  §7描述（有关此地位）： §b{desc}
   §7价格： §b{price}
   §7期限： §b{expiryTime}
 
@@ -33,12 +33,12 @@ forms-closeForm: "已关闭界面。"
 
 # 主界面：
 forms-menu-title: "§b地位§7商店"
-forms-menu-content: "§r请选择低位"
+forms-menu-content: "§r请选择地位"
 
 # 确认界面：
 forms-buyRank-title: "§b地位§7商店"
 forms-buyRank-content: |-
-  §e有关此低位：
+  §e有关此地位：
   §r{description}
   §7价格： §b{price}
   §7期限： §b{expiryTime}

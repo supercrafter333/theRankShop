@@ -29,8 +29,8 @@ class LanguageMgr
         }
         $message = $lang->get($message);
         if ($replace !== null)
-            foreach (array_keys($replace) as $key) {
-                $message = str_replace($key, $replace[$key], $message);
+            foreach (array_keys($replace) as $key => $text) {
+                $message = str_replace($key, $text, $message);
             }
         return str_replace("{line}", "\n", $message);
     }

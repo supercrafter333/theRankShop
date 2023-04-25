@@ -7,6 +7,7 @@ use IvanCraft623\RankSystem\rank\Rank;
 use IvanCraft623\RankSystem\RankSystem;
 use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
+use supercrafter333\theRankShop\Manager\Rank\RankManagementPlugin;
 
 class RankSystemMgr implements RankManagementPlugin
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace supercrafter333\theRankShop\Manager;
+namespace supercrafter333\theRankShop\Manager\Rank;
 
 use DateTime;
 use pocketmine\player\Player;

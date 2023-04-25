@@ -9,11 +9,11 @@ use pocketmine\world\sound\AnvilFallSound;
 use pocketmine\world\sound\GhastShootSound;
 use supercrafter333\theRankShop\Lang\LanguageMgr;
 use supercrafter333\theRankShop\Lang\Messages;
+use supercrafter333\theRankShop\Manager\Economy\EconomyPluginMgr;
 use supercrafter333\theRankShop\Manager\Info\RankInfo;
 use supercrafter333\theRankShop\Manager\PlayerMgr;
-use supercrafter333\theRankShop\Manager\RankManagementPluginMgr;
-use supercrafter333\theRankShop\Manager\RankMgr;
-use supercrafter333\theRankShop\theRankShop;
+use supercrafter333\theRankShop\Manager\Rank\RankManagementPluginMgr;
+use supercrafter333\theRankShop\Manager\Rank\RankMgr;
 
 /**
  * Forms of theRankShop.
@@ -108,7 +108,7 @@ class theRankShopDefaultForms
                     return;
                 }
 
-                theRankShop::getEconomyProvider()->getMoney($this->player,
+                EconomyPluginMgr::getEconomyPlugin()->getMoney($this->player,
                     function (float|int $amount) use ($player, $playerMgr, $rank, $rankInfo, $rankName): void {
 
                         $name = $rankInfo->getRankName();

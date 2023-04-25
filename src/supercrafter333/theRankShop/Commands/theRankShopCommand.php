@@ -13,10 +13,9 @@ use pocketmine\utils\AssumptionFailedError;
 use pocketmine\utils\TextFormat;
 use supercrafter333\theRankShop\Forms\theRankShopDefaultForms;
 use supercrafter333\theRankShop\Lang\LanguageMgr;
-use supercrafter333\theRankShop\Manager\CommandMgr;
 use supercrafter333\theRankShop\Manager\Info\RankInfo;
-use supercrafter333\theRankShop\Manager\RankManagementPluginMgr;
-use supercrafter333\theRankShop\Manager\RankMgr;
+use supercrafter333\theRankShop\Manager\Rank\RankManagementPluginMgr;
+use supercrafter333\theRankShop\Manager\Rank\RankMgr;
 use supercrafter333\theRankShop\theRankShop;
 use function count;
 use function is_numeric;
@@ -29,18 +28,14 @@ class theRankShopCommand extends Command implements PluginOwned
 
     /**
      * @param string $name
+     * @param string $permission
      * @param string $description
-     * @param string $usageMessage
+     * @param string|null $usageMessage
      * @param array|string[] $aliases
      */
-    public function __construct(string $name, string $description = "", string $usageMessage = null, array $aliases = [])
+    public function __construct(string $name, string $permission, string $description = "", string $usageMessage = null, array $aliases = [])
     {
-        $cmdInfo = CommandMgr::getCommandInfo($name);
-
-        $description = $cmdInfo->getDescription() == null ? $description : $cmdInfo->getDescription();
-        $usageMessage = $cmdInfo->getUsage() !== null ? $cmdInfo->getUsage() : $usageMessage;
-        $aliases = !is_array($cmdInfo->getAliases()) ? $cmdInfo->getAliases() : $aliases;
-
+        $this->setPermission($permission);
         parent::__construct($name, $description, $usageMessage, $aliases);
     }
 
@@ -51,6 +46,8 @@ class theRankShopCommand extends Command implements PluginOwned
      */
     public function execute(CommandSender $s, string $commandLabel, array $args): void
     {
+        if (!$this->testPermission($s)) return;
+
         //Default part
         if (!isset($args[0])) {
             if (!$s instanceof Player) {

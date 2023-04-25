@@ -1,6 +1,6 @@
 <?php
 
-namespace supercrafter333\theRankShop\Manager;
+namespace supercrafter333\theRankShop\Manager\Rank;
 
 use alvin0319\GroupsAPI\group\Group;
 use alvin0319\GroupsAPI\GroupsAPI;

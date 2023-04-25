@@ -1,6 +1,6 @@
 <?php
 
-namespace supercrafter333\theRankShop\Manager;
+namespace supercrafter333\theRankShop\Manager\Rank;
 
 use alvin0319\GroupsAPI\GroupsAPI;
 use pocketmine\utils\AssumptionFailedError;
@@ -28,6 +28,7 @@ class RankManagementPluginMgr
     public static function setRankManagementClass(RankManagementPlugin $pluginClass): void
     {
         self::$pluginClass = $pluginClass;
+        theRankShop::getInstance()->getLogger()->debug("Set rank-management plugin to: " . $pluginClass::class);
     }
 
     /**

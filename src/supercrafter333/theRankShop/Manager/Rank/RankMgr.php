@@ -1,6 +1,6 @@
 <?php
 
-namespace supercrafter333\theRankShop\Manager;
+namespace supercrafter333\theRankShop\Manager\Rank;
 
 use supercrafter333\theRankShop\Manager\Info\RankInfo;
 use supercrafter333\theRankShop\theRankShop;

@@ -14,7 +14,10 @@ use supercrafter333\theRankShop\Events\RankBoughtEvent;
 use supercrafter333\theRankShop\Events\RankBuyEvent;
 use supercrafter333\theRankShop\Lang\LanguageMgr;
 use supercrafter333\theRankShop\Lang\Messages;
+use supercrafter333\theRankShop\Manager\Economy\EconomyPluginMgr;
 use supercrafter333\theRankShop\Manager\Info\RankInfo;
+use supercrafter333\theRankShop\Manager\Rank\RankManagementPluginMgr;
+use supercrafter333\theRankShop\Manager\Rank\RankMgr;
 use supercrafter333\theRankShop\theRankShop;
 use function class_exists;
 
@@ -98,7 +101,7 @@ class PlayerMgr
 
         // INFO: Money-Check was removed from this function because of compatibility problems with BedrockEconomy!!
 
-        theRankShop::getEconomyProvider()->takeMoney($this->player, $price);
+        EconomyPluginMgr::getEconomyPlugin()->reduceMoney($this->player, $price);
         $setRank = $this->setRank($name, $ev->getExpireAt());
         if (!$setRank) return throw new AssumptionFailedError("[theRankShop] -> Can't set rank ($name) for player (" . $this->player->getName() . ")!");
         $ev = new RankBoughtEvent($this->player, $name);

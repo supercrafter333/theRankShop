@@ -3,6 +3,7 @@ build-by-default: true
 branches:
 - master
 - development
+- pm5
 projects:
   theRankShop:
     icon: "icon.png"

@@ -2,8 +2,8 @@
 
 namespace supercrafter333\theRankShop\Manager\Rank;
 
-use alvin0319\GroupsAPI\GroupsAPI;
 use pocketmine\utils\AssumptionFailedError;
+use r3pt1s\groupsystem\GroupSystem;
 use supercrafter333\theRankShop\theRankShop;
 
 /**
@@ -40,10 +40,10 @@ class RankManagementPluginMgr
     {
         if (self::$pluginClass == null) {
             $gApi = theRankShop::getInstance()->getServer()->getPluginManager()->getPlugin("GroupsAPI");
-            if (!$gApi instanceof GroupsAPI) {
-                return throw new AssumptionFailedError("[theRankShop] -> Can't find default rank-management plugin (GroupsAPI)!");
+            if (!$gApi instanceof GroupSystem) {
+                return throw new AssumptionFailedError("[theRankShop] -> Can't find default rank-management plugin (GroupSystem)!");
             }
-            return new GroupsAPIMgr();
+            return new GroupSystemMgr();
         }
         return self::$pluginClass;
     }

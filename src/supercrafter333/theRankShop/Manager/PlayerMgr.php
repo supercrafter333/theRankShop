@@ -2,14 +2,12 @@
 
 namespace supercrafter333\theRankShop\Manager;
 
-use alvin0319\GroupsAPI\GroupsAPI;
-use alvin0319\GroupsAPI\util\Util;
 use DateTime;
 use pocketmine\player\Player;
 use pocketmine\utils\AssumptionFailedError;
 use r3pt1s\GroupSystem\group\GroupManager;
 use r3pt1s\GroupSystem\GroupSystem;
-use r3pt1s\GroupSystem\player\PlayerGroupManager;
+use r3pt1s\groupsystem\session\SessionManager;
 use supercrafter333\theRankShop\Events\RankBoughtEvent;
 use supercrafter333\theRankShop\Events\RankBuyEvent;
 use supercrafter333\theRankShop\Lang\LanguageMgr;
@@ -93,7 +91,7 @@ class PlayerMgr
 
         if ($name == null || $price == null) return throw new AssumptionFailedError("[theRankShop] -> Rank-Name and/or Rank-Price is null!");
 
-        if ($playerRank == $name || $this->havingHigherRank($name) || $this->havingHigherRank_GroupsAPI($name) || $this->havingHigherRank_GroupSystem($name)) return 2;
+        if ($playerRank == $name || $this->havingHigherRank($name) || $this->havingHigherRank_GroupSystem($name)) return 2;
 
         $ev = new RankBuyEvent($this->player, $name, LanguageMgr::getMsg(Messages::MSG_RANKBUY_CANCELLED), $rankInfo->getExpireAt());
         $ev->call();
@@ -109,22 +107,6 @@ class PlayerMgr
         return 1;
     }
 
-    /**
-     * @param string $rankName
-     * @return bool
-     */
-    protected function havingHigherRank_GroupsAPI(string $rankName): bool
-    {
-        if (!class_exists(GroupsAPI::class) ||
-            theRankShop::getInstance()->getServer()->getPluginManager()->getPlugin("GroupsAPI") === null)
-            return false;
-
-        if (($rank = GroupsAPI::getInstance()->getGroupManager()->getGroup($rankName)) === null) return false;
-
-        //return GroupsAPI::getInstance()->getMemberManager()->getMember($this->player->getName())->getHighestGroup()->getPriority() > $rank->getPriority();
-        return Util::canInteractTo(GroupsAPI::getInstance()->getMemberManager()->getMember($this->player->getName())->getHighestGroup(), $rank);
-    }
-
     protected function havingHigherRank_GroupSystem(string $rankName): bool
     {
         if (!class_exists(GroupSystem::class) ||
@@ -133,7 +115,8 @@ class PlayerMgr
 
         if (($rank = GroupManager::getInstance()->getGroupByName($rankName)) === null) return false;
 
-        return PlayerGroupManager::getInstance()->hasGroup($this->player, $rank)
-            || $rank->isHigher(PlayerGroupManager::getInstance()->getGroup($this->player)->getGroup());
+        $session = SessionManager::getInstance()->get($this->player);
+        return $session->hasGroup($rank)
+            || $rank->isHigher($session->getGroup()->getGroup());
     }
 }

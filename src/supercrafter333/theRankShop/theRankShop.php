@@ -7,6 +7,7 @@ use IvanCraft623\RankSystem\RankSystem;
 use jojoe77777\FormAPI\Form;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
+use pocketmine\utils\SingletonTrait;
 use r3pt1s\GroupSystem\GroupSystem;
 use supercrafter333\theRankShop\Commands\theRankShopCommand;
 use supercrafter333\theRankShop\Lang\Languages;
@@ -14,24 +15,21 @@ use supercrafter333\theRankShop\Manager\CommandMgr;
 use supercrafter333\theRankShop\Manager\Rank\GroupSystemMgr;
 use supercrafter333\theRankShop\Manager\Rank\RankManagementPluginMgr;
 use supercrafter333\theRankShop\Manager\RankSystemMgr;
+use function var_dump;
 
 /**
  * PluginBase of theRankShop.
  */
 class theRankShop extends PluginBase
 {
-
-    /**
-     * @var self
-     */
-    protected static self $instance;
+    use SingletonTrait;
 
     /**
      * onLoad function.
      */
     public function onLoad(): void
     {
-        self::$instance = $this;
+        self::setInstance($this);
 
         //Save config files and setup directorys
         @mkdir($this->getDataFolder() . "languages");
@@ -82,7 +80,7 @@ class theRankShop extends PluginBase
         elseif (class_exists(RankSystem::class))
             RankManagementPluginMgr::setRankManagementClass(new RankSystemMgr());
         
-        # GroupsAPI is default
+        # GroupSystem is default
 
 
         $cmdInfo = CommandMgr::getCommandInfo("therankshop");
@@ -94,23 +92,16 @@ class theRankShop extends PluginBase
         $description = $cmdInfo->getDescription() !== null ? $cmdInfo->getDescription() : $description;
         $usageMessage = $cmdInfo->getUsage() !== null ? $cmdInfo->getUsage() : $usageMessage;
         $aliases = is_array($cmdInfo->getAliases()) ? $cmdInfo->getAliases() : $aliases;
+        var_dump($aliases);
         $this->getServer()->getCommandMap()->register("theRankShop", new theRankShopCommand("therankshop", "theRankShop.cmd", $description, $usageMessage, $aliases));
-    }
-
-    /**
-     * @return static
-     */
-    public static function getInstance(): self
-    {
-        return self::$instance;
     }
 
     /**
      * @return string
      */
-    public function getFile2(): string
+    public function getFile(): string
     {
-        return $this->getFile();
+        return parent::getFile();
     }
 
     /**

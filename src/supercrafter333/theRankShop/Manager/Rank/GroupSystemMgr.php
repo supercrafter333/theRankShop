@@ -5,20 +5,19 @@ namespace supercrafter333\theRankShop\Manager\Rank;
 use DateTime;
 use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
-use r3pt1s\GroupSystem\group\Group;
-use r3pt1s\GroupSystem\GroupSystem;
-use r3pt1s\GroupSystem\player\GroupPriority;
-use r3pt1s\GroupSystem\player\PlayerGroup;
-use r3pt1s\GroupSystem\player\PlayerGroupManager;
+use r3pt1s\groupsystem\group\Group;
+use r3pt1s\groupsystem\GroupSystem;
+use r3pt1s\groupsystem\player\PlayerRemainingGroup;
+use r3pt1s\groupsystem\session\SessionManager;
 
 class GroupSystemMgr implements RankManagementPlugin
 {
 
     /**
      * @param string $rankName
-     * @return mixed
+     * @return Group|null
      */
-    public function getRank(string $rankName)
+    public function getRank(string $rankName): Group|null
     {
         return GroupSystem::getInstance()->getGroupManager()->getGroupByName($rankName);
     }
@@ -35,13 +34,14 @@ class GroupSystemMgr implements RankManagementPlugin
         if (!($group = $this->getRank($rankName)) instanceof Group)
             return false;
 
-        if (PlayerGroupManager::getInstance()->hasGroup($player, $group)
-            || $group->isHigher(PlayerGroupManager::getInstance()->getGroup($player)->getGroup()))
+        $session = SessionManager::getInstance()->get($player);
+        if ($session->hasGroup($group)
+            || $group->isHigher($session->getGroup()->getGroup()))
             return false;
 
-        $added =  PlayerGroupManager::getInstance()->addGroup($player, new PlayerGroup($group, GroupPriority::HIGH(), $expireAt));
-        PlayerGroupManager::getInstance()->update($player);
-        return $added;
+        $session->addGroup(new PlayerRemainingGroup($group, null));
+        $session->update();
+        return true;
     }
 
     /**
@@ -50,7 +50,7 @@ class GroupSystemMgr implements RankManagementPlugin
      */
     public function getRankOfPlayer(Player $player): ?string
     {
-        return PlayerGroupManager::getInstance()->getGroup($player)->getGroup()->getName();
+        return SessionManager::getInstance()->get($player)?->getGroup()?->getGroup()->getName();
     }
 
     /**

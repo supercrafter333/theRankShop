@@ -11,6 +11,5 @@ projects:
     php: 8.1
     libs:
       - src: https://poggit.pmmp.io/ci/supercrafter333/FormAPI/libFormAPI
-      - src: https://poggit.pmmp.io/ci/supercrafter333/libPiggyEconomy/libPiggyEconomy
       - src: https://poggit.pmmp.io/ci/supercrafter333/yamlcomments/yamlcomments
 ...

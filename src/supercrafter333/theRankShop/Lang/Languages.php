@@ -50,7 +50,7 @@ class Languages
             theRankShop::getInstance()->saveResource("languages/messages.yml");
             return new Config(theRankShop::getInstance()->getDataFolder() . "languages/messages.yml", Config::YAML);
         }
-        if (isset(self::$languages[$rawLang]) && file_exists(theRankShop::getInstance()->getFile2() . "resources/languages/" . $rawLang . ".yml")) return new Config(theRankShop::getInstance()->getFile2() . "resources/languages/" . $rawLang . ".yml", Config::YAML);
+        if (isset(self::$languages[$rawLang]) && file_exists(theRankShop::getInstance()->getFile() . "resources/languages/" . $rawLang . ".yml")) return new Config(theRankShop::getInstance()->getFile() . "resources/languages/" . $rawLang . ".yml", Config::YAML);
         return self::getDefaultLanguageData();
     }
 
@@ -63,7 +63,7 @@ class Languages
         if (strtolower($rawLang) == "custom") {
             return self::LANG_CUSTOM;
         }
-        if (isset(self::$languages[$rawLang]) && file_exists(theRankShop::getInstance()->getFile2() . "resources/languages/" . $rawLang . ".yml")) return $rawLang;
+        if (isset(self::$languages[$rawLang]) && file_exists(theRankShop::getInstance()->getFile() . "resources/languages/" . $rawLang . ".yml")) return $rawLang;
         return self::LANG_en_BE;
     }
 
@@ -72,7 +72,7 @@ class Languages
      */
     public static function getDefaultLanguageData(): Config
     {
-        return new Config(theRankShop::getInstance()->getFile2() . "resources/languages/" . self::LANG_en_BE . ".yml", Config::YAML);
+        return new Config(theRankShop::getInstance()->getFile() . "resources/languages/" . self::LANG_en_BE . ".yml", Config::YAML);
     }
 
     /**

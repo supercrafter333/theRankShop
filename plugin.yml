@@ -1,12 +1,11 @@
 name: theRankShop
-version: 1.5.0-dev
+version: 1.5.0
 api: 5.0.0
 main: supercrafter333\theRankShop\theRankShop
 author: supercrafter333
 description: A simple and user-friendly rank shop plugin with extension support and multi-language-system.
 
 softdepend:
-  - "GroupsAPI"
   - "GroupSystem"
   - "RankSystem"
   - "BedrockEconomy"

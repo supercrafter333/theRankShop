@@ -56,6 +56,6 @@ class CommandInfo
     {
         $list = $this->list;
         if (!$list->exists($this->cmdName) || !isset($list->get($this->cmdName)["aliases"])) return null;
-        return $list->get($this->cmdName, ["aliases"]);
+        return $list->get($this->cmdName, [])["aliases"];
     }
 }

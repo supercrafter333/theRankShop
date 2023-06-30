@@ -15,7 +15,6 @@ use supercrafter333\theRankShop\Manager\CommandMgr;
 use supercrafter333\theRankShop\Manager\Rank\GroupSystemMgr;
 use supercrafter333\theRankShop\Manager\Rank\RankManagementPluginMgr;
 use supercrafter333\theRankShop\Manager\RankSystemMgr;
-use function var_dump;
 
 /**
  * PluginBase of theRankShop.
@@ -92,7 +91,6 @@ class theRankShop extends PluginBase
         $description = $cmdInfo->getDescription() !== null ? $cmdInfo->getDescription() : $description;
         $usageMessage = $cmdInfo->getUsage() !== null ? $cmdInfo->getUsage() : $usageMessage;
         $aliases = is_array($cmdInfo->getAliases()) ? $cmdInfo->getAliases() : $aliases;
-        var_dump($aliases);
         $this->getServer()->getCommandMap()->register("theRankShop", new theRankShopCommand("therankshop", "theRankShop.cmd", $description, $usageMessage, $aliases));
     }
 
